@@ -6,6 +6,7 @@ import Main from "../Main/Main";
 import Product from "../Product/Main";
 import Layout from "../Components/Layout";
 import Default from "../Components/Default";
+
 export const mainRoutes = [
   {
     path: "",
@@ -49,6 +50,7 @@ export const mainRoutes = [
         path: "/product",
         index: true,
         element: <Product />,
+
       },
     ],
   },
