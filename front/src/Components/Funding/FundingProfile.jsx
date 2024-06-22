@@ -8,24 +8,25 @@ const FundingProfile = ({ amount, userInfo }) => {
   };
 
   return (
-    <div className="w-[100%] flex flex-col items-center">
-      <div className="w-[90%] min-w-[50px] h-[120px]  rounded-full">
+    <div className="w-full h-[80px] flex justify-between items-center border border-solid border-gray-400 rounded-xl">
+      <div className="h-full rounded-xl flex items-center mx-4">
         <Avatar
-          rounded
-          className="h-[120px] content-center"
-          size="lg"
-          bordered
+          className="border border-gray-400 w-fit"
+          size="sm"
           color="gray"
         />
       </div>
-      {userInfo}님
-      <div className="w-[90%] h-[50px] text-center rounded-lg mt-2">
-        <Badge
-          color="success"
-          className="flex items-center justify-center text-center text-[16px]"
+      <div className="flex-1 flex-col">
+        <div className="text-[16px] ">{userInfo} (학과)</div>
+        <div className="text-xs text-gray-400">친구야 사랑해</div>
+      </div>
+
+      <div className="h-full flex items-center mr-4 text-center rounded-lg mt-2">
+        <div
+          className="flex items-center mb-2 text-center font-semibold text-[18px]"
         >
           ₩{formatPrice(amount)}
-        </Badge>
+        </div>
       </div>
     </div>
   );
