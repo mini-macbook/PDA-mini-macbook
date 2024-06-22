@@ -5,8 +5,8 @@ import { userInfoState } from "../stores/auth";
 import axios from "axios";
 import { fetchLogin } from "../Api/AuthApi";
 
-import first from '../imgs/first.png';
-import before from '../imgs/before.png';
+import first from "../imgs/first.png";
+import before from "../imgs/before.png";
 
 export const AUTH_KEY = "AUTH_USER";
 
@@ -49,24 +49,22 @@ const Login = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <div className="flex flex-col items-center justify-center p-10 bg-white rounded-3xl shadow-m w-full max-w-4xl gap-10">
-        <div className="flex items-center">
-          <Link
-            to="/"
-            className="mr-auto flex items-center"
-          >
-            <img src={before} alt="before" className="w-4 h-4 mr-2" />
-          </Link>
-          <img src={first} alt="first" className="ml-auto" />
+        <Link to="/" className="mr-auto">
+          <img src={before} alt="before" className="w-4 h-4 mr-2 mt-1" />
+        </Link>
+        <div className="mt-6 text-4xl md:text-6xl font-extrabold flex justify-between text-center text-transparent bg-clip-text text-black">
+          <img src={first} alt="before" className="m-auto" />
         </div>
 
         <form className="mt-8 w-full max-w-64" onSubmit={onClickLogin}>
-          <div className="flex items-center justify-center border-b border-gray-300 pb-2" style={{ width: "100%" }}>
+          <div
+            className="flex items-center justify-center border-b border-gray-300 pb-2"
+            style={{ width: "100%" }}
+          >
             <div className="w-64">
               <input
                 id="userEmail"
                 name="userEmail"
-                type="userEmail"
-                autoComplete="userEmail"
                 required
                 className="w-full px-3 py-2 placeholder-gray-400 border-none focus:outline-none sm:text-sm"
                 placeholder="아이디"
@@ -75,7 +73,10 @@ const Login = () => {
               />
             </div>
           </div>
-          <div className="flex items-center justify-center border-b border-gray-300 pb-2" style={{ width: "100%" }}>
+          <div
+            className="flex items-center justify-center border-b border-gray-300 pb-2"
+            style={{ width: "100%" }}
+          >
             <div className="w-64">
               <input
                 id="userPassword"

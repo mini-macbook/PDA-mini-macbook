@@ -10,9 +10,8 @@ const fundingSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Product",
     },
-    isProgress: {
-      type: Boolean,
-      default: true,
+    message: {
+      type: String,
     },
     transaction: {
       type: [
