@@ -55,7 +55,7 @@ const Login = () => {
             to="/"
             className="text-gray-300 absolute left-60 top-16 items-center font-thin hover:text-white-500 justify-start"
           >
-            <MdArrowBackIos className="text-3xl"/>
+            <MdArrowBackIos className="text-3xl" />
           </Link>
           <div className="RecipekoreaOtf m-auto text-4xl font-medium">
             티끌모아 맥북
@@ -71,8 +71,6 @@ const Login = () => {
               <input
                 id="userEmail"
                 name="userEmail"
-                type="email"
-                autoComplete="email"
                 required
                 className="w-full px-3 py-2 placeholder-gray-400 border-none focus:outline-none sm:text-sm"
                 placeholder="이메일"
