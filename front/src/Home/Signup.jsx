@@ -2,11 +2,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { fetchSignup, fetchNickName } from "../Api/AuthApi";
+import before from '../imgs/before.png';
 
 const Signup = () => {
   const navigate = useNavigate();
   const baseUrl = "http://localhost:3001/api/users/signup";
   const nickNameUrl = "http://localhost:3001/api/users/nickName";
+
   const handleChangeState = (e) => {
     setState({
       ...state,
@@ -15,6 +17,7 @@ const Signup = () => {
   };
 
   const [state, setState] = useState({
+    department: "",
     userEmail: "",
     userPassword: "",
     passwordCheck: "",
@@ -22,6 +25,7 @@ const Signup = () => {
     phoneNumber: "",
     birthDay: Date.now(),
   });
+
   const onClickSignUp = async (e) => {
     e.preventDefault();
 
@@ -35,31 +39,6 @@ const Signup = () => {
     }
   };
 
-  // const onClickDuplicateId = async (e) => {
-  //   e.preventDefault();
-
-  //   try {
-  //     const response = await axios.get(dupliUrl, state);
-  //     const idArray = response.data;
-  //     console.log(idArray);
-  //     let isDuplicate = false;
-
-  //     for (const id of idArray) {
-  //       if (id.userEmail === state.userEmail) {
-  //         isDuplicate = true;
-  //         break;
-  //       }
-  //     }
-  //     if (isDuplicate) {
-  //       alert("중복된 이메일 입니다.");
-  //     } else {
-  //       alert("사용가능한 이메일 입니다.");
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //     alert("중복 검사가 실패했습니다.");
-  //   }
-  // };
   const onClickNickNameCheck = async (e) => {
     e.preventDefault();
 
@@ -67,9 +46,6 @@ const Signup = () => {
       const response = await fetchNickName({
         nickName: state.nickName,
       });
-      // const response = await axios.post(nickNameUrl, {
-      //   nickName: state.nickName,
-      // });
       console.log(response.data);
       if (response.data.result === true) {
         alert("중복된 아이디 입니다.");
@@ -81,9 +57,18 @@ const Signup = () => {
       alert("중복검사가 실패했습니다.");
     }
   };
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md p-8 mx-auto bg-white rounded-lg shadow-lg">
+        <div>
+          <Link
+            to="/"
+            className="flex items-center text-sm font-medium text-indigo-600 hover:text-indigo-500"
+          >
+            <img src={before} alt="before" className="w-4 h-4 mr-2" />
+          </Link>
+        </div>
         <h2 className="mt-6 text-3xl font-extrabold text-center text-transparent bg-clip-text bg-black">
           회원가입
         </h2>
@@ -107,18 +92,19 @@ const Signup = () => {
                   autoComplete="nickName"
                   required
                   onChange={handleChangeState}
-                  className="w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-100"
+                  className="w-full max-w-xs px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-100"
                   placeholder="이름"
                 />
               </div>
             </div>
+
             {/* 아이디 */}
             <div className="flex items-center space-x-2">
               <label
                 htmlFor="userEmail"
                 className="block w-24 text-sm font-medium leading-5 text-gray-700"
               >
-                아이디
+                이메일
               </label>
               <div className="relative flex-grow">
                 <input
@@ -129,20 +115,18 @@ const Signup = () => {
                   autoComplete="userEmail"
                   required
                   onChange={handleChangeState}
-                  className="w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-100"
-                  placeholder="아이디"
+                  className="w-full max-w-xs px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-100"
+                  placeholder="이메일"
                 />
               </div>
             </div>
-
-
 
             {/* 중복 검사 버튼 */}
             <div className="flex items-center space-x-2">
               <div className="w-24"></div> {/* 공간을 만들기 위한 빈 div */}
               <button
                 type="button"
-                className="flex-shrink-0 px-3 text-xs font-semibold text-gray-400 bg-white border border-l border-transparent rounded-md shadow-sm hover:bg-lime-300 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700"
+                className="flex-shrink-0 py-2 px-6 text-xs font-semibold text-gray-400 bg-white border border-l border-transparent rounded-md shadow-sm hover:bg-lime-300 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700"
                 onClick={onClickNickNameCheck}
               >
                 중복 검사
@@ -166,30 +150,31 @@ const Signup = () => {
                   value={state.userPassword}
                   autoComplete="new-password"
                   required
-                  className="w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-100"
+                  className="w-full max-w-xs px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-100"
                   placeholder="비밀번호 입력"
                 />
               </div>
             </div>
 
-            {/* 비밀번호 확인 */}
+            {/* 학과 */}
             <div className="flex items-center space-x-2">
               <label
-                htmlFor="passwordCheck"
+                htmlFor="department"
                 className="block w-24 text-sm font-medium leading-5 text-gray-700"
               >
-                비밀번호 확인
+                학과
               </label>
               <div className="relative flex-grow">
                 <input
-                  id="passwordCheck"
-                  name="passwordCheck"
-                  type="password"
-                  onChange={handleChangeState}
-                  autoComplete="new-password"
+                  id="department"
+                  name="department"
+                  type="text"
+                  value={state.department}
+                  autoComplete="department"
                   required
-                  className="w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-100"
-                  placeholder="비밀번호 확인"
+                  onChange={handleChangeState}
+                  className="w-full max-w-xs px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-100"
+                  placeholder="학과"
                 />
               </div>
             </div>
@@ -210,7 +195,7 @@ const Signup = () => {
                   type="date"
                   required
                   onChange={handleChangeState}
-                  className="w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-100"
+                  className="w-full max-w-xs px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-100"
                   placeholder="yyyy-mm-dd"
                 />
               </div>
@@ -233,38 +218,24 @@ const Signup = () => {
                   required
                   value={state.phoneNumber}
                   onChange={handleChangeState}
-                  className="w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-100"
+                  className="w-full max-w-xs px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-100"
                   placeholder="010-0000-0000"
                 />
               </div>
             </div>
           </div>
 
-          <div className="flex items-center justify-between">
-            <div>
-              <Link
-                to="/"
-                className="text-sm font-medium text-indigo-600 hover:text-indigo-500"
-              >
-                취소
-              </Link>
-            </div>
-            <div>
-              <button
-                onClick={onClickSignUp}
-                className="inline-flex justify-center px-4 py-2 text-sm font-medium leading-5 text-white transition duration-150 ease-in-out bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-lime-300 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700"
-              >
-                회원가입하기
-              </button>
-            </div>
+          <div className="flex items-center justify-center">
+            <button
+              onClick={onClickSignUp}
+              className="inline-flex justify-center px-4 py-2 text-sm font-medium leading-5 text-white transition duration-150 ease-in-out bg-blue-500 border border-transparent rounded-md shadow-sm hover:bg-lime-300 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700"
+            >
+              회원가입하기
+            </button>
           </div>
         </form>
       </div>
     </div>
-
-
-
-
   );
 };
 
