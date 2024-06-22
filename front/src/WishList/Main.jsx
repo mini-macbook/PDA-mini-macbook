@@ -13,6 +13,7 @@ export default function WishListPage() {
   const [myWishList, setMyWishList] = useState([]);
   const [fundingData, setFundingData] = useState([]);
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+  const [department, setDepartment] = useState("");
 
   const userNickName = JSON.parse(sessionStorage.getItem(AUTH_KEY)).nickName;
   const customWidth = "w-[300px]";
@@ -55,6 +56,7 @@ export default function WishListPage() {
       setFundingData(data1.fundings);
     }
     fetchData();
+    setDepartment(userInfo.department);
   }, []);
 
   console.log(myWishList);
@@ -86,9 +88,7 @@ export default function WishListPage() {
             {birthDayDate.toLocaleDateString()}
           </p>
           <div>
-            <p className="text-sm font-semibold text-gray-500">
-              {userInfo.department}
-            </p>
+            <p className="text-sm font-semibold text-gray-500">{department}</p>
           </div>
         </div>
       </div>
