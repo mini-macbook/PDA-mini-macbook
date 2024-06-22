@@ -16,6 +16,7 @@ router.get("/:fundingId", (req, res, next) => {
     .populate("product")
     .then((data) => {
       res.json(data);
+      console.log(data);
     })
     .catch((err) => {
       next(err);
