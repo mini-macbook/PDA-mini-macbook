@@ -110,12 +110,13 @@ const Signup = () => {
               <div className="relative flex-grow">
                 <input
                   id="userEmail"
+                  name="userEmail"
                   type="text"
                   value={state.userEmail}
                   required
                   onChange={handleChangeState}
                   className="w-full max-w-xs px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-100"
-                  placeholder="이메일"
+                  placeholder="아이디"
                 />
               </div>
             </div>
