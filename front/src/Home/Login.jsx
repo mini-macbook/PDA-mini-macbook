@@ -49,14 +49,14 @@ const Login = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <div className="flex flex-col items-center justify-center p-10 bg-white rounded-3xl shadow-m w-full max-w-4xl gap-10">
-        <Link
-          to="/"
-          className="mr-auto"
-        >
-          <img src={before} alt="before" className="w-4 h-4 mr-2 mt-1" />
-        </Link>
-        <div className="mt-6 text-4xl md:text-6xl font-extrabold flex justify-between text-center text-transparent bg-clip-text text-black">
-          <img src={first} alt="before" className="m-auto" />
+        <div className="flex items-center">
+          <Link
+            to="/"
+            className="mr-auto flex items-center"
+          >
+            <img src={before} alt="before" className="w-4 h-4 mr-2" />
+          </Link>
+          <img src={first} alt="first" className="ml-auto" />
         </div>
 
         <form className="mt-8 w-full max-w-64" onSubmit={onClickLogin}>
@@ -65,8 +65,8 @@ const Login = () => {
               <input
                 id="userEmail"
                 name="userEmail"
-                type="email"
-                autoComplete="email"
+                type="userEmail"
+                autoComplete="userEmail"
                 required
                 className="w-full px-3 py-2 placeholder-gray-400 border-none focus:outline-none sm:text-sm"
                 placeholder="아이디"
@@ -100,12 +100,12 @@ const Login = () => {
             </button>
           </div>
         </form>
-        <div className="mt-4 text-center">
+        <div className="mb-4 text-center">
           <Link
             to="/signup"
             className="font-medium text-zinc-700 hover:text-zinc-500"
           >
-            계정이 없으신가요? 가입하기
+            회원가입
           </Link>
         </div>
       </div>

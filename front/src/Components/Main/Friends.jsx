@@ -26,7 +26,7 @@ export default function Friends({
   };
 
   return (
-    <div className="bg-white rounded-3xl p-4 shadow-lg">
+    <div className="bg-white rounded-3xl p-4" style={{ boxShadow: '2px 2px 8px 0px rgba(0, 0, 0, 0.15)' }}>
       <div className="flex flex-row">
         <div className="text-2xl font-bold mt-2 w-14">친구</div>
         <div className="mb-4 flex items-center">
