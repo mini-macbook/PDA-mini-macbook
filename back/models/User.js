@@ -46,7 +46,8 @@ userSchema.statics.signUp = async function (
   userPassword,
   nickName,
   phoneNumber,
-  birthDay
+  birthDay,
+  department
 ) {
   const salt = await bcrypt.genSalt();
   console.log(salt);
@@ -58,6 +59,7 @@ userSchema.statics.signUp = async function (
       nickName: nickName,
       phoneNumber,
       birthDay,
+      department,
     });
     return {
       _id: user._id,
@@ -65,6 +67,7 @@ userSchema.statics.signUp = async function (
       nickName: user.nickName,
       phoneNumber: user.phoneNumber,
       birthDay: user.birthDay,
+      department: user.department,
     };
   } catch (err) {
     throw err;
@@ -92,6 +95,7 @@ visibleUser.get(function (value, virtual, doc) {
     phoneNumber: doc.phoneNumber,
     nickName: doc.nickName,
     birthDay: doc.birthDay,
+    department: doc.department,
   };
 });
 

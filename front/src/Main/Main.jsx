@@ -4,14 +4,21 @@ import Friends from "../Components/Main/Friends";
 import WishLists from "../Components/Main/WishLists";
 import { fetchUserFriends } from "../Api/UserApi";
 import { fetchWishes } from "../Api/WishApi";
+import { useRecoilState } from "recoil";
+import { userInfoState } from "../stores/auth";
+import MyWishLists from "../Components/Main/MyWishLists";
 
 const Main = () => {
   const [friends, setFriends] = useState([]);
   const [filteredFriends, setFilteredFriends] = useState([]);
   const [wishList, setWishList] = useState([]);
+  const [myWishList, setMyWishList] = useState([]);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [selectedMonth, setSelectedMonth] = useState(null); // Initialize as null to allow deselection
   const [searchTerm, setSearchTerm] = useState(""); // Initialize search term
+  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+
+  console.log(userInfo);
 
   useEffect(() => {
     const fetchFriends = async () => {
@@ -39,6 +46,7 @@ const Main = () => {
       try {
         const wishListData = await fetchWishes(phoneNumber);
         setWishList(wishListData);
+        console.log(wishListData);
       } catch (error) {
         console.error("Error fetching wish lists:", error);
       }
@@ -46,6 +54,20 @@ const Main = () => {
 
     fetchWishLists();
   }, [phoneNumber]);
+
+  useEffect(() => {
+    const fetchMyWishLists = async () => {
+      try {
+        const wishListData = await fetchWishes(userInfo.phoneNumber);
+        console.log(wishListData.fundings);
+        setMyWishList(wishListData);
+      } catch (error) {
+        console.error("Error fetching wish lists:", error);
+      }
+    };
+
+    fetchMyWishLists();
+  }, []);
 
   const filterFriends = (friends, month, searchTerm) => {
     const today = new Date();
@@ -86,14 +108,29 @@ const Main = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <div className="shadow-2xl mt-4 ml-12 mr-12 p-4 rounded-2xl">
-        <div className="flex flex-col">
-          <div className="text-2xl font-bold">나의 펀딩 현황</div>
-          <div>진행 중인 펀딩</div>
-          <div>종료된 펀딩</div>
+      {myWishList ? (
+        <div className="shadow-2xl mt-4 ml-12 mr-12 p-3 rounded-2xl">
+          <div className="flex flex-col">
+            <div className="flex flex-row items-center">
+              <div className="text-2xl font-bold">나의 펀딩 현황</div>
+              <span className="text-lg font-medium ml-3">
+                {`${myWishList.isWishList?.length || 0}`}개
+              </span>
+            </div>
+            <div>
+              <MyWishLists
+                wishList={myWishList.isWishList}
+                fundings={myWishList.fundings}
+                birthDay={myWishList.birthDay}
+              />
+            </div>
+          </div>
         </div>
-      </div>
-      <div className="flex flex-row">
+      ) : (
+        <div />
+      )}
+
+      <div className="flex flex-row mt-10">
         <div className="ml-12 m-10 w-96">
           <Friends
             className="bg-white"
