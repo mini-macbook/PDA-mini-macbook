@@ -13,11 +13,11 @@ export const fetchWishes = async (phoneNumber) => {
 };
 
 // 위시리스트에 상품 추가하기
-export const fetchWishPost = async (productId) => {
-  console.log("productId:", productId);
+export const fetchWishPost = async (productId, message) => {
+  console.log("productId:", productId, "message:", message);
   try {
     const response = await afterLoginInstance.post(`/user/wish/`, {
-      data: { productId: productId }, // Pass data in the 'data' property
+      data: { productId: productId, message: message }, // Pass data in the 'data' property
     });
     return response.data;
   } catch (error) {
