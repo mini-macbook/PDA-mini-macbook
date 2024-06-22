@@ -56,8 +56,14 @@ router.get("/user/:userEmail", async (req, res, next) => {
 
 router.post("/signup", async (req, res, next) => {
   try {
-    const { userEmail, userPassword, nickName, phoneNumber, birthDay } =
-      req.body;
+    const {
+      userEmail,
+      userPassword,
+      nickName,
+      phoneNumber,
+      birthDay,
+      department,
+    } = req.body;
     console.log(req.body);
 
     const user = await User.signUp(
@@ -65,7 +71,8 @@ router.post("/signup", async (req, res, next) => {
       userPassword,
       nickName,
       phoneNumber,
-      birthDay
+      birthDay,
+      department
     );
     res.status(201).json(user);
   } catch (err) {

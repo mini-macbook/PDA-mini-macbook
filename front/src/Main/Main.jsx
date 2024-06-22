@@ -85,23 +85,32 @@ const Main = () => {
   };
 
   return (
-    <div className="flex min-h-screen">
-      <div className="ml-12 m-10 w-96">
-        <Friends
-          className="bg-white"
-          friends={filteredFriends}
-          setPhoneNumber={setPhoneNumber}
-          selectedMonth={selectedMonth}
-          setSelectedMonth={setSelectedMonth}
-          searchTerm={searchTerm}
-          setSearchTerm={setSearchTerm}
+    <div className="flex flex-col min-h-screen">
+      <div className="shadow-2xl mt-4 ml-12 mr-12 p-4 rounded-2xl">
+        <div className="flex flex-col">
+          <div className="text-2xl font-bold">나의 펀딩 현황</div>
+          <div>진행 중인 펀딩</div>
+          <div>종료된 펀딩</div>
+        </div>
+      </div>
+      <div className="flex flex-row">
+        <div className="ml-12 m-10 w-96">
+          <Friends
+            className="bg-white"
+            friends={filteredFriends}
+            setPhoneNumber={setPhoneNumber}
+            selectedMonth={selectedMonth}
+            setSelectedMonth={setSelectedMonth}
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+          />
+        </div>
+        <WishLists
+          wishList={wishList.isWishList}
+          fundings={wishList.fundings}
+          birthDay={wishList.birthDay}
         />
       </div>
-      <WishLists
-        wishList={wishList.isWishList}
-        fundings={wishList.fundings}
-        birthDay={wishList.birthDay}
-      />
     </div>
   );
 };

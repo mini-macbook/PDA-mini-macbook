@@ -34,6 +34,7 @@ const userSchema = new mongoose.Schema(
       type: [mongoose.Schema.Types.ObjectId],
       ref: "Product",
     },
+    department: String,
   },
   {
     timestamps: true,
@@ -88,9 +89,9 @@ visibleUser.get(function (value, virtual, doc) {
   return {
     _id: doc._id,
     userEmail: doc.userEmail,
-    phoneNumber : doc.phoneNumber,
+    phoneNumber: doc.phoneNumber,
     nickName: doc.nickName,
-    birthDay: doc.birthDay
+    birthDay: doc.birthDay,
   };
 });
 

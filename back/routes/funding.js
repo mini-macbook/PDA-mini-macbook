@@ -54,18 +54,38 @@ router.post("/:fundingId", async (req, res, next) => {
   );
   res.send(updateResult);
 });
-
-// transaction 삭제 - test용
-router.patch("/:fundingId", async (req, res, next) => {
-  const result = await Funding.updateOne(
-    {
-      _id: req.params.fundingId,
-    },
-    {
-      transaction: [],
+router.patch("/:fundingId/complete", async (req, res, next) => {
+  try {
+    const result = await Funding.updateOne(
+      { _id: req.params.fundingId },
+      { $set: { isProgress: false } }
+    );
+    if (result.nModified === 0) {
+      return res
+        .status(404)
+        .send({ message: "Funding not found or already completed" });
     }
-  );
-  res.send(result);
+    res.send({ message: "Funding marked as completed", result });
+  } catch (error) {
+    next(error);
+  }
+});
+
+// Existing endpoint to delete transaction for test purposes
+router.patch("/:fundingId", async (req, res, next) => {
+  try {
+    const result = await Funding.updateOne(
+      {
+        _id: req.params.fundingId,
+      },
+      {
+        $set: { transaction: [] },
+      }
+    );
+    res.send(result);
+  } catch (error) {
+    next(error);
+  }
 });
 
 module.exports = router;
