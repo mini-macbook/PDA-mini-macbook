@@ -69,7 +69,7 @@ export default function WishListPage() {
     <div className="flex justify-evenly">
       <div className="flex-col border border-solid w-[30%] border-gray-600 rounded-2xl transition-transform bg-white p-4 mt-5">
         <div className="flex flex-col w-full items-start justify-between mb-3">
-          <span className="text-3xl mb-8 mt-4 ml-4 font-bold">
+          <span className="text-3xl mb-8 mt-4 ml-4 font-bold ">
             나의 펀딩 현황
           </span>
           <img
@@ -81,8 +81,10 @@ export default function WishListPage() {
         <div className="text-xl flex items-center font-bold flex-col gap-2 mt-8">
           <div className="flex items-center gap-2">
             <p className="text-2xl font-semibold">{userNickName}</p>
-            <p className="text-sm text-gray-400">생일 6월 22일</p>
           </div>
+          <p className="text-sm text-gray-400">
+            {birthDayDate.toLocaleDateString()}
+          </p>
           <div>
             <p className="text-sm font-semibold text-gray-500">
               {userInfo.department}
@@ -92,7 +94,7 @@ export default function WishListPage() {
       </div>
 
       <div className="w-[60%]">
-        <h2 className="px-5 pt-5 pb-2 text-[20px]">나의 위시리스트</h2>
+        <h2 className="px-5 pt-5 pb-2 text-[20px] font-bold">나의 펀딩</h2>
         <div className="p-5">
           <div className="flex flex-wrap gap-4 md:grid-cols-2 lg:grid-cols-3">
             {myWishList.map((myWish, index) => (
