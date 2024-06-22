@@ -16,7 +16,7 @@ const First = () => {
         <div className="flex flex-r sm:flex-row gap-6 mb-12 mt-12">
           <Link
             to="/login"
-            className="w-full sm:w-56 lg:w-64 bg-blue-500 hover:bg-blue-300 text-white font-bold py-3 px-6 rounded-2xl transition-colors duration-200 ease-in-out transform hover:-translate-y-1"
+            className="w-full sm:w-56 lg:w-64 bg-blue-500 hover:bg-blue-400 text-white font-bold py-3 px-6 rounded-2xl transition-colors duration-200 ease-in-out transform hover:-translate-y-1"
           >
             로그인
           </Link>

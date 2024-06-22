@@ -23,11 +23,11 @@ export default function Header() {
     navigate("/");
   };
   return (
-    <div className="mb-20">
+    <div className="mb-20 ">
       <Navbar
         fluid
         rounded
-        className={`px-4 mb-4 fixed left-0 top-0 right-0 ${
+        className={`px-4 mb-4 z-[9999] fixed left-0 top-0 right-0 ${
           getScrollY > 0 && "shadow-sm"
         }`}
       >

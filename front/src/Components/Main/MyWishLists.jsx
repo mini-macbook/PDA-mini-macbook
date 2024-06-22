@@ -15,9 +15,9 @@ export default function MyWishLists({ wishList, fundings, birthDay }) {
   }
 
   return (
-    <div className="overflow-x-auto ml-0 max-w-full scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100">
+    <div className="overflow-x-auto ml-0 max-w-full scrollbar-thin  scrollbar-thumb-gray-400 scrollbar-track-gray-100">
       <div className="pb-8 text-2xl font-bold ps-8"></div>
-      <div className="flex gap-6 md:px-8">
+      <div className="flex gap-6 md:px-8 mb-3">
         {wishList?.length > 0 &&
           wishList.map((item, index) => (
             <MyWishList
