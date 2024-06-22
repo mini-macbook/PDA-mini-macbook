@@ -15,13 +15,11 @@ import Confetti from "react-confetti";
 import FundingChart from "../Components/Funding/FundingChart";
 import fundingMessage from "../imgs/fundingMessage.svg";
 const calculateDDay = (targetDate) => {
-  // Get the current date
   const currentDate = new Date();
   const curYear = currentDate.getFullYear();
-  const currentDay = currentDate.getDate(); // Day of the month (1-31)
+  const currentDay = currentDate.getDate();
   const currentMonth = currentDate.getMonth() + 1;
 
-  // Parse the target date string to a Date object (Note: Not required in this case)
   const parsedTargetDate = new Date(targetDate);
   const targetDay = parsedTargetDate.getDate();
   const targetMonth = parsedTargetDate.getMonth() + 1;
@@ -29,15 +27,13 @@ const calculateDDay = (targetDate) => {
   const curDateObject = new Date(curYear, currentMonth - 1, currentDay);
   const targetDateObject = new Date(curYear, targetMonth - 1, targetDay);
 
-  // Calculate the time difference in milliseconds
   const timeDifference = targetDateObject - curDateObject;
-
-  // Calculate the number of days
   const daysDifference =
     Math.ceil(timeDifference / (1000 * 60 * 60 * 24)) % 365;
 
   return daysDifference < 0 ? (daysDifference + 365) % 365 : daysDifference;
 };
+
 const formatPrice = (price) => {
   return new Intl.NumberFormat("en-US", { style: "decimal" }).format(price);
 };
@@ -45,16 +41,12 @@ const formatPrice = (price) => {
 const Funding = () => {
   const { fundingId } = useParams();
   const [fundingDetail, setFundingDetail] = useState([]);
-  const [userFundingResult, setUserFundingResult] = useState();
-  const [productDetail, setProductDetail] = useState([]);
-  const [userDetail, setUserDetail] = useState();
-  const [userInfo, setUserInfo] = useState();
+  const [userFundingResult, setUserFundingResult] = useState([]);
+  const [productDetail, setProductDetail] = useState({});
+  const [userDetail, setUserDetail] = useState({});
+  const [userInfo, setUserInfo] = useState({});
   const { width, height } = useWindowSize();
   const [showConfetti, setShowConfetti] = useState(true);
-
-  const formatPrice = (price) => {
-    return new Intl.NumberFormat("en-US", { style: "decimal" }).format(price);
-  };
 
   const FundingRight = () => {
     return (
@@ -78,13 +70,11 @@ const Funding = () => {
           />
           <div className="flex flex-col gap-y-2 w-[100%] justify-center mt-4">
             <p className="text-xl font-bold mb-2 mt-2">펀딩에 참여한 친구들</p>
-            {userFundingResult?.map((value) => {
-              return (
-                <div key={value.user} className="w-full h-[80px] ">
-                  <FundingProfile amount={value.amount} userInfo={value.user} />
-                </div>
-              );
-            })}
+            {userFundingResult?.map((value, index) => (
+              <div key={index} className="w-full h-[80px]">
+                <FundingProfile amount={value.amount} userInfo={value} />
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -100,42 +90,46 @@ const Funding = () => {
       setUserDetail(response[0].user);
 
       const userAmountResult = response[0].transaction.reduce((acc, item) => {
-        const {
-          amount,
-          userId: { nickName },
-        } = item;
-        acc[nickName] = (acc[nickName] || 0) + amount;
+        const { amount, userId } = item;
+        if (userId && userId.nickName && userId.department) {
+          const { nickName, department } = userId;
+          const key = `${nickName}, ${department}`;
+          acc[key] = (acc[key] || 0) + amount;
+        }
         return acc;
       }, {});
+
       console.log(userAmountResult);
+
       const resultArray = Object.entries(userAmountResult).map(
-        ([user, amount]) => ({
-          user,
-          amount,
-        })
+        ([user, amount]) => {
+          const [nickName, department] = user.split(", ");
+          return { nickName, department, amount };
+        }
       );
+
       console.log(resultArray);
       setUserFundingResult(resultArray);
     };
+
     fetchData();
-    setUserInfo(JSON.parse(sessionStorage.getItem("AUTH_USER")).nickName);
-  }, []);
+    const storedUserInfo = JSON.parse(sessionStorage.getItem("AUTH_USER"));
+    setUserInfo(storedUserInfo.nickName);
+  }, [fundingId]);
 
   useEffect(() => {
-    // Set a timeout to hide the confetti after 3 seconds
     const timeout = setTimeout(() => {
       setShowConfetti(false);
     }, 5000);
 
-    // Clean up the timeout when the component unmounts
     return () => clearTimeout(timeout);
   }, []);
 
-  // const currentFundingAmount = fundingDetail.length === 0 ? 0 : 3;
   const currentFundingAmount = fundingDetail.reduce(
     (sum, item) => sum + item.amount,
     0
   );
+
   const FundingLeft = () => {
     console.log(productDetail);
     const htmlCode = productDetail.productDetailDescription;
@@ -179,7 +173,6 @@ const Funding = () => {
               icon={HiInformationCircle}
               color="success"
               className="w-[100%]"
-              // onDismiss={() => alert("Alert dismissed!")}
               withBorderAccent
             >
               <span className="font-bold text-[16px]">

@@ -109,11 +109,13 @@ const Login = () => {
             </button>
           </div>
         </form>
-        <div className="mt-4 text-center">
+        <div className="mb-4 text-center">
           <Link
             to="/signup"
             className="font-medium text-zinc-700 hover:text-zinc-500"
-          ></Link>
+          >
+            회원가입
+          </Link>
         </div>
       </div>
     </div>
