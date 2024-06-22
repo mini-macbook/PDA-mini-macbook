@@ -7,7 +7,6 @@ import User from "./User";
 import { userInfoState } from "../../stores/auth";
 import { useRecoilState } from "recoil";
 import Swal from "sweetalert2";
-
 export default function ModalComp({
   currentFundingAmount,
   targetFundingAmount,
@@ -107,7 +106,7 @@ export default function ModalComp({
   };
 
   return (
-    <div className="flex flex-col items-center ">
+    <div className="flex flex-col items-center mt-10">
       <div className="flex flex-wrap gap-4 w-[100%] items-center flex-col">
         {currentFundingAmount === targetFundingAmount ? (
           <Button className=" bg-myColor-green3 border-none hover:bg-myColor-green2 w-[90%]">
@@ -115,7 +114,7 @@ export default function ModalComp({
           </Button>
         ) : (
           <Button
-            className=" bg-myColor-green3 border-none hover:bg-myColor-green2 w-[90%]"
+            className=" bg-[#6599FF]  border-none hover:bg- text-xl font-semibold w-full h-[60px]"
             onClick={() => setOpenModal(true)}
           >
             펀딩하기
