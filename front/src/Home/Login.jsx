@@ -73,7 +73,7 @@ const Login = () => {
                 name="userEmail"
                 required
                 className="w-full px-3 py-2 placeholder-gray-400 border-none focus:outline-none sm:text-sm"
-                placeholder="이메일"
+                placeholder="아이디"
                 value={state.userEmail}
                 onChange={handleChangeState}
               />
