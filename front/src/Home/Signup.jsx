@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { fetchSignup, fetchNickName } from "../Api/AuthApi";
+
 import before from '../imgs/before.png';
 
 const Signup = () => {
@@ -64,7 +65,7 @@ const Signup = () => {
         <div>
           <Link
             to="/"
-            className="flex items-center text-sm font-medium text-indigo-600 hover:text-indigo-500"
+            className="flex "
           >
             <img src={before} alt="before" className="w-4 h-4 mr-2" />
           </Link>
