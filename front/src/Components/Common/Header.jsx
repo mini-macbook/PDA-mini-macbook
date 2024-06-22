@@ -10,8 +10,9 @@ import { userInfoState } from "../../stores/auth";
 import { useRecoilState } from "recoil";
 import { AUTH_KEY } from "../../Home/Login";
 import { Avatar } from "flowbite-react";
-
+import GetScrollY from '../../hooks/getScrollY';
 export default function Header() {
+  const getScrollY = GetScrollY();
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
   const userNickName = JSON.parse(sessionStorage.getItem(AUTH_KEY)).nickName;
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ export default function Header() {
   };
   return (
     <div className="mb-20">
-      <Navbar fluid rounded className="mb-4 shadow-sm fixed left-0 top-0 right-0">
+      <Navbar fluid rounded className={`mb-4 fixed left-0 top-0 right-0 ${getScrollY>0 && "shadow-sm"}`}>
         <Navbar.Brand>
           <span
             className="pl-6 self-center text-xl font-semibold whitespace-nowrap dark:text-white hover:cursor-pointer"
