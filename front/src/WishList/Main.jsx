@@ -16,12 +16,15 @@ export default function WishListPage() {
   const [myWishList, setMyWishList] = useState([]);
   const [fundingData, setFundingData] = useState([]);
   const [userInfoName, setUserInfoName] = useRecoilState(userInfoState);
+  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+  console.log(userInfo);
+
   const userNickName = JSON.parse(sessionStorage.getItem(AUTH_KEY)).nickName;
   const customWidth = "w-[300px]";
   const customHeight = "h-[80px]";
   const customProgressBarWidth = "w-[280px]";
-  const userInfo = sessionStorage.getItem("AUTH_USER");
-  const birthDayDate = new Date(JSON.parse(userInfo)?.birthDay);
+  const userInfo1 = sessionStorage.getItem("AUTH_USER");
+  const birthDayDate = new Date(JSON.parse(userInfo1)?.birthDay);
   // console.log("생일", birthDayDate)
 
   //username
@@ -86,9 +89,14 @@ export default function WishListPage() {
         </div>
         <div className="text-xl flex items-center font-bold flex-col gap-2 mt-8">
           <div className="flex items-center gap-2">
-            <p className="text-2xl font-semibold">{userNickName}</p> <p className="text-sm text-gray-400">생일 6월 22일</p>
+            <p className="text-2xl font-semibold">{userNickName}</p>{" "}
+            <p className="text-sm text-gray-400">생일 6월 22일</p>
           </div>
-          <div><p className="text-sm font-semibold text-gray-500">정보시스템학과</p></div>
+          <div>
+            <p className="text-sm font-semibold text-gray-500">
+              {userInfo.department}
+            </p>
+          </div>
         </div>
       </div>
 

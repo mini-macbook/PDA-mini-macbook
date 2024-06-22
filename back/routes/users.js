@@ -79,6 +79,8 @@ router.post("/login", async (req, res, next) => {
   try {
     const { userEmail, userPassword } = req.body;
     const user = await User.login(userEmail, userPassword);
+    console.log(user);
+
     const tokenMaxAge = 60 * 60 * 24 * 3;
     const token = createToken(user, tokenMaxAge);
 

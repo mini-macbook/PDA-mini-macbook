@@ -31,6 +31,7 @@ const Login = () => {
     try {
       const response = await fetchLogin(state);
       const user = response.data;
+      console.log(user);
       if (user.token) {
         setUserInfo(user);
         console.log(user);
