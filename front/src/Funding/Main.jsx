@@ -2,12 +2,20 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import FundingProfile from "../Components/Funding/FundingProfile";
 import ModalComp from "../Components/Common/Modal";
+D;
 import { fetchFundingDetail } from "../Api/Funding";
+import axios from "axios";
+import sanitizeHtml from "sanitize-html";
+import { fetchFundingDetail, fetchFundingPost } from "../Api/Funding";
+import { userInfoState } from "../stores/auth";
+import { useRecoilState } from "recoil";
+import Swal from "sweetalert2";
 import { Alert } from "flowbite-react";
 import { HiInformationCircle } from "react-icons/hi";
 import useWindowSize from "react-use/lib/useWindowSize";
 import Confetti from "react-confetti";
 import FundingChart from "../Components/Funding/FundingChart";
+
 const calculateDDay = (targetDate) => {
   // Get the current date
   const currentDate = new Date();
@@ -31,6 +39,9 @@ const calculateDDay = (targetDate) => {
     Math.ceil(timeDifference / (1000 * 60 * 60 * 24)) % 365;
 
   return daysDifference < 0 ? (daysDifference + 365) % 365 : daysDifference;
+};
+const formatPrice = (price) => {
+  return new Intl.NumberFormat("en-US", { style: "decimal" }).format(price);
 };
 
 const Funding = () => {
@@ -126,6 +137,36 @@ const Funding = () => {
     0
   );
   const FundingLeft = () => {
+    // const htmlCode = productDetail[0]?.productDetailDescription;
+    // const cleanCode = sanitizeHtml(htmlCode, {
+    //   allowedTags: sanitizeHtml.defaults.allowedTags.concat([
+    //     "img",
+    //     "iframe",
+    //     "video",
+    //   ]),
+    //   allowedAttributes: {
+    //     ...sanitizeHtml.defaults.allowedAttributes,
+    //     img: ["src", "alt", "data-animated", "data-origin-url"],
+    //     iframe: [
+    //       "src",
+    //       "width",
+    //       "height",
+    //       "frameborder",
+    //       "allowfullscreen",
+    //       "allow",
+    //     ],
+    //     video: [
+    //       "src",
+    //       "width",
+    //       "height",
+    //       "controls",
+    //       "autoplay",
+    //       "loop",
+    //       "muted",
+    //     ],
+    //   },
+    // });
+
     return (
       <div className="flex flex-1 mx-20 flex-col items-center">
         {currentFundingAmount === productDetail?.price && showConfetti && (
@@ -158,15 +199,29 @@ const Funding = () => {
               </a>
             </div>
           </div>
-          <div className="w-full flex justify-between">
-            <img src={productDetail?.detailImageUrl} width={170} />
-            <div className="flex-1 flex flex-col h-[170px] mx-2 border-y border-solid border-grey-400">
-              <div className=""></div>
+          <div className="w-full px-10 flex-col items-center">
+            <div className="flex">
+              <img src={productDetail?.detailImageUrl} width={170} />
+              <div className="flex-1 flex flex-col gap-1 h-[150px] mx-4 border-y justify-center px-2 border-solid border-gray-500">
+                <div className="w-full max-w-[400px] text-xl font-bold truncate">
+                  {productDetail?.title}
+                </div>
+                <div className="text-[grey] text-sm font-semibold">
+                  {productDetail?.brandName}
+                </div>
+                <div className="text-xl font-semibold">
+                  {formatPrice(productDetail?.price)}원
+                </div>
+              </div>
             </div>
-          </div>
-
-          <div className="w-[80%] text-[20px] font-bold text-center mt-3 mb-3">
-            {productDetail?.title}
+            <div className="flex flex-col">
+              <p className="mt-16 text-2xl font-bold border-b border-solid w-[150px] leading-10 text-center border-b-black">
+                상품상세
+              </p>
+              <div>
+                {/* <div dangerouslySetInnerHTML={{ __html: cleanCode }}></div> */}
+              </div>
+            </div>
           </div>
         </div>
       </div>
