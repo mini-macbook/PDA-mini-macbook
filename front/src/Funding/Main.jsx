@@ -12,8 +12,7 @@ import { Alert } from "flowbite-react";
 import { HiEye, HiInformationCircle } from "react-icons/hi";
 import useWindowSize from "react-use/lib/useWindowSize";
 import Confetti from "react-confetti";
-import FundingDetail from "../Components/Funding/FundingDetail";
-
+import FundingChart from "../Components/Funding/FundingChart";
 const calculateDDay = (targetDate) => {
   // Get the current date
   const currentDate = new Date();
@@ -51,6 +50,39 @@ const Funding = () => {
 
   const formatPrice = (price) => {
     return new Intl.NumberFormat("en-US", { style: "decimal" }).format(price);
+  };
+
+  const FundingRight = () => {
+    return (
+      <div className="w-[500px] mt-20 mr-20 h-full">
+        <div className="w-[400px] m-auto h-full">
+          <div className="bg-[#517ACC] rounded-xl mb-10 h-[100px] w-full text-xl font-semibold flex items-center text-white pl-10">
+            "맥북 갖고싶어잉."
+          </div>
+          <FundingChart
+            targetFundingAmount={productDetail?.price}
+            currentFundingAmount={currentFundingAmount}
+          />
+          <ModalComp
+            currentFundingAmount={currentFundingAmount}
+            targetFundingAmount={productDetail?.price}
+            fundingId={fundingId}
+            productDetail={productDetail}
+            userDetail={userDetail}
+          />
+          <div className="flex flex-col gap-y-2 w-[100%] justify-center mt-4">
+            <p className="text-xl font-bold mb-2 mt-2">펀딩에 참여한 친구들</p>
+            {userFundingResult?.map((value) => {
+              return (
+                <div key={value.user} className="w-full h-[80px] ">
+                  <FundingProfile amount={value.amount} userInfo={value.user} />
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    );
   };
 
   useEffect(() => {
@@ -98,73 +130,61 @@ const Funding = () => {
     (sum, item) => sum + item.amount,
     0
   );
-
-  return (
-    <div className="flex flex-col items-center">
-      {currentFundingAmount === productDetail?.price && showConfetti && (
-        <Confetti width={width} height={height} />
-      )}
-      <div className="w-[90vw] max-w-[700px] flex flex-col items-center">
-        {currentFundingAmount === productDetail?.price ? (
-          <Alert
-            icon={HiInformationCircle}
-            color="success"
-            className="w-[100%]"
-            // onDismiss={() => alert("Alert dismissed!")}
-            withBorderAccent
-          >
-            <span className="font-bold text-[16px]">
-              펀딩이 완료된 상품입니다!
-            </span>
-          </Alert>
-        ) : (
-          <div></div>
+  const FundingLeft = () => {
+    return (
+      <div className="flex flex-1 mx-20 flex-col items-center">
+        {currentFundingAmount === productDetail?.price && showConfetti && (
+          <Confetti width={width} height={height} />
         )}
-        <div className="text-[40px] mt-2 mb-3 font-semibold text-center">
-          <div>
-            <a className="font-extrabold ">
-              {userDetail?.nickName === userInfo ? (
-                <div>펀딩이 진행 중입니다!</div>
-              ) : (
-                <div>{userDetail?.nickName}님의 생일을 축하해주세요!</div>
-              )}
-            </a>
+        <div className="w-[60vw] max-w-[700px] flex flex-col items-center">
+          {currentFundingAmount === productDetail?.price ? (
+            <Alert
+              icon={HiInformationCircle}
+              color="success"
+              className="w-[100%]"
+              // onDismiss={() => alert("Alert dismissed!")}
+              withBorderAccent
+            >
+              <span className="font-bold text-[16px]">
+                펀딩이 완료된 상품입니다!
+              </span>
+            </Alert>
+          ) : (
+            <div></div>
+          )}
+          <div className="text-[40px] mt-2 mb-3 font-semibold text-center">
+            <div>
+              <a className="font-extrabold ">
+                {userDetail?.nickName === userInfo ? (
+                  <div>펀딩이 진행 중입니다!</div>
+                ) : (
+                  <div>{userDetail?.nickName}님의 생일을 축하해주세요!</div>
+                )}
+              </a>
+            </div>
+          </div>
+          <div className="w-full flex justify-between">
+            <img
+              src={productDetail?.detailImageUrl}
+              width={170}
+            />
+            <div className="flex-1 flex flex-col h-[170px] mx-2 border-y border-solid border-grey-400">
+              <div className=""></div>
+            </div>
+          </div>
+
+          <div className="w-[80%] text-[20px] font-bold text-center mt-3 mb-3">
+            {productDetail?.title}
           </div>
         </div>
-        <img src={productDetail?.detailImageUrl} width={500} />
-        <div className="w-[80%] text-[20px] font-bold text-center mt-3 mb-3">
-          {productDetail?.title}
-        </div>
-        <div className="bg-[#f5f7fb] w-[80%] flex justify-center rounded-lg">
-          <FundingDetail
-            customHeight="h-[84px]"
-            targetFundingAmount={productDetail?.price}
-            currentFundingAmount={currentFundingAmount}
-            remainDays={calculateDDay(userDetail?.birthDay)}
-          />
-        </div>
-        {/* <button className="w-[80%] bg-myColor-green3 text-white mt-4 h-[50px] rounded-lg">
-          펀딩하기
-        </button> */}
-        <div className="w-[90%] max-w-[700px] mt-3">
-          <ModalComp
-            currentFundingAmount={currentFundingAmount}
-            targetFundingAmount={productDetail?.price}
-            fundingId={fundingId}
-            productDetail={productDetail}
-            userDetail={userDetail}
-          />
-        </div>
-        <div className="flex flex-row flex-wrap w-[100%] justify-center mt-4">
-          {userFundingResult?.map((value) => {
-            return (
-              <div key={value.user} className="w-[30%] h-[200px] m-1 ">
-                <FundingProfile amount={value.amount} userInfo={value.user} />
-              </div>
-            );
-          })}
-        </div>
       </div>
+    );
+  };
+
+  return (
+    <div className="flex">
+      <FundingLeft />
+      <FundingRight />
     </div>
   );
 };

@@ -1,0 +1,17 @@
+
+.RecipekoreaOtf {
+    font-family: 'Recipekorea-otf';
+  }
+  @font-face {
+    font-family: "Recipekorea-otf";
+    src: url("./fonts/Recipekorea.otf") format("truetype");
+    font-weight: normal;
+  }
+  .Pretendard {
+    font-family: 'Pretendard';
+  }
+  @font-face {
+    font-family: "Pretendard";
+    src: url("./fonts/Pretendard-Bold.otf") format("truetype");
+    font-weight: normal;
+  }
