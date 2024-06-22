@@ -49,15 +49,13 @@ const Login = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <div className="flex flex-col items-center justify-center p-10 bg-white rounded-3xl shadow-m w-full max-w-4xl gap-10">
-
+        <Link
+          to="/"
+          className="mr-auto"
+        >
+          <img src={before} alt="before" className="w-4 h-4 mr-2 mt-1" />
+        </Link>
         <div className="mt-6 text-4xl md:text-6xl font-extrabold flex justify-between text-center text-transparent bg-clip-text text-black">
-          <Link
-            to="/"
-            className="flex -ml-6 items-center font-medium text-indigo-600 hover:text-white-500 justify-start"
-          >
-            <img src={before} alt="before" className="w-4 h-4 mr-2 mt-1" />
-            
-          </Link>
           <img src={first} alt="before" className="m-auto" />
         </div>
 
@@ -71,7 +69,7 @@ const Login = () => {
                 autoComplete="email"
                 required
                 className="w-full px-3 py-2 placeholder-gray-400 border-none focus:outline-none sm:text-sm"
-                placeholder="이메일"
+                placeholder="아이디"
                 value={state.userEmail}
                 onChange={handleChangeState}
               />
@@ -107,7 +105,7 @@ const Login = () => {
             to="/signup"
             className="font-medium text-zinc-700 hover:text-zinc-500"
           >
-            
+            계정이 없으신가요? 가입하기
           </Link>
         </div>
       </div>
