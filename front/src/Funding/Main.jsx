@@ -54,7 +54,7 @@ const Funding = () => {
         <div className="w-[400px] m-auto h-full">
           <div className="mb-8">
             <img className="relative bg-[#FFE5BD] w-[400px] rounded-2xl" src={fundingMessage}></img>
-            <div className="absolute top-[36px] left-1/4 text-2xl text-[#E2A448] font-semibold">맥북 받고싶어용
+            <div className="absolute top-[36px] left-1/4 text-2xl text-[#E2A448] font-semibold">
 </div>
           </div>
           <FundingChart
@@ -163,7 +163,7 @@ const Funding = () => {
     });
 
     return (
-      <div className="flex flex-1 mr-[500px] mx-20 flex-col h-fit items-center">
+      <div className="flex flex-1 mr-[500px] mx-20 flex-col h-fit items-center mt-4">
         {currentFundingAmount === productDetail?.price && showConfetti && (
           <Confetti width={width} height={height} />
         )}
@@ -193,10 +193,10 @@ const Funding = () => {
               </a>
             </div>
           </div>
-          <div className="w-full px-10 flex-col items-center">
+          <div className="w-full px-10 mt-4 flex-col items-center">
             <div className="flex">
               <img src={productDetail?.detailImageUrl} width={170} />
-              <div className="flex-1 flex flex-col gap-1 h-[150px] mx-4 border-y justify-center px-2 border-solid border-gray-500">
+              <div className="flex-1 flex mt-2 flex-col gap-1 h-[150px] mx-4 border-y justify-center px-2 border-solid border-gray-500">
                 <div className="w-full max-w-[400px] text-xl font-bold truncate">
                   {productDetail?.title}
                 </div>

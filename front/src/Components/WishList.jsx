@@ -53,7 +53,7 @@ export default function WishList({
           {imageUrl && (
             <img
               src={imageUrl}
-              className="w-44 h-20 rounded-md mt-3"
+              className="w-36 h-32 rounded-md mt-1"
               alt="product"
             />
           )}
@@ -61,7 +61,7 @@ export default function WishList({
             <h6 className="text-sm font-semibold text-gray-600">{brandName}</h6>
           </div>
         </div>
-        <div className="text-start w-full">
+        <div className="text-start w-full mt-2">
           <h5 className="font-bold text-gray-800 mb-2 truncate overflow-hidden whitespace-nowrap text-overflow-ellipsis">
             {truncatedTitle}
           </h5>
