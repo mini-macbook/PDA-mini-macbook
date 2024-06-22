@@ -59,7 +59,8 @@ router.get("/:UserId", authenticate, async (req, res, next) => {
 // 나의 위시리스트 상품 추가 POST: /api/user/wish
 router.post("/", authenticate, async (req, res, next) => {
   try {
-    const { productId } = req.body.data;
+    const { productId, message } = req.body.data;
+
     const userId = req.user._id;
 
     const user = await User.findById(userId);
@@ -80,14 +81,13 @@ router.post("/", authenticate, async (req, res, next) => {
       user: userId,
       product: product._id,
       transaction: [],
+      message: message, // Save the message with the funding instance
     });
 
     res.json({
       user: updatedUser.isWishList,
       funding,
     });
-
-    // res.json("test");
   } catch (error) {
     next(error);
   }

@@ -22,16 +22,42 @@ const ProductDetail = () => {
 
   const onWishClick = async () => {
     if (!isHeart) {
-      const response = await fetchWishPost(productDetail[0]?.productId);
-      Swal.fire({
-        icon: "success",
+      const { value: message } = await Swal.fire({
         title: "위시리스트 추가",
-        text: "펀딩이 시작됩니다!",
-      }).then(setIsHeart((prev) => !prev));
-      console.log(response);
-    } else if (isHeart) {
-      const response = await fetchWishDelete(productDetail[0]?.productId);
-      Swal.fire({
+        input: "textarea",
+        inputLabel: "메세지를 입력해주세요.",
+        inputPlaceholder: "메세지를 입력하세요.",
+        showCancelButton: true,
+        confirmButtonText: "완료",
+        cancelButtonText: "취소",
+        inputAttributes: {
+          "aria-label": "메세지를 입력하세요",
+        },
+      });
+
+      if (message) {
+        try {
+          const response = await fetchWishPost(
+            productDetail[0]?.productId,
+            message
+          );
+          console.log(response);
+          setIsHeart(true);
+          Swal.fire({
+            icon: "success",
+            title: "위시리스트에 추가되었습니다.",
+          });
+        } catch (error) {
+          console.error(error);
+          Swal.fire({
+            icon: "error",
+            title: "추가 실패",
+            text: "위시리스트 추가에 실패했습니다.",
+          });
+        }
+      }
+    } else {
+      const result = await Swal.fire({
         icon: "warning",
         title: "위시리스트 삭제",
         text: "펀딩이 취소되고 지금까지 모인 모두 펀딩이 환불처리 됩니다.",
@@ -40,15 +66,24 @@ const ProductDetail = () => {
         cancelButtonColor: "#d33",
         confirmButtonText: "승인",
         cancelButtonText: "취소",
-        everseButtons: true,
-      }).then((result) => {
-        if (result.isConfirmed) {
-          Swal.fire("펀딩 취소가 완료되었습니다!");
-
-          setIsHeart((prev) => !prev);
-        }
+        reverseButtons: true,
       });
-      console.log(response);
+
+      if (result.isConfirmed) {
+        try {
+          const response = await fetchWishDelete(productDetail[0]?.productId);
+          console.log(response);
+          setIsHeart(false);
+          Swal.fire("펀딩 취소가 완료되었습니다!");
+        } catch (error) {
+          console.error(error);
+          Swal.fire({
+            icon: "error",
+            title: "삭제 실패",
+            text: "위시리스트 삭제에 실패했습니다.",
+          });
+        }
+      }
     }
   };
 
