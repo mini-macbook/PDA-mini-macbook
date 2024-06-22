@@ -26,7 +26,7 @@ const Product = () => {
   };
 
   return (
-    <div className="container ">
+    <div className="container">
       <div className="grid gap-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 place-items-center">
         {products.map((el) => (
           <Card

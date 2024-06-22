@@ -12,6 +12,7 @@ import { Alert } from "flowbite-react";
 import { HiEye, HiInformationCircle } from "react-icons/hi";
 import useWindowSize from "react-use/lib/useWindowSize";
 import Confetti from "react-confetti";
+import FundingDetail from "../Components/Funding/FundingDetail";
 
 const calculateDDay = (targetDate) => {
   // Get the current date
@@ -135,7 +136,7 @@ const Funding = () => {
           {productDetail?.title}
         </div>
         <div className="bg-[#f5f7fb] w-[80%] flex justify-center rounded-lg">
-          <FundingProgress
+          <FundingDetail
             customHeight="h-[84px]"
             targetFundingAmount={productDetail?.price}
             currentFundingAmount={currentFundingAmount}

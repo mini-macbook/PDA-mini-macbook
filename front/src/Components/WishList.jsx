@@ -1,5 +1,4 @@
 import { Card } from "flowbite-react";
-
 import FundingProgress from "./Funding/FundingProgress";
 import { useNavigate } from "react-router";
 
@@ -10,19 +9,19 @@ export default function WishList({
   brandName,
   title,
   price,
-  // totalFunded, // api로 펀딩정보 받아와 직접 계산해야한다
   remainDays,
   customWidth,
   customHeight,
   customProgressBarWidth,
-  renderButton, // 후원하기 버튼 생성함수
-  useFundingProgress, // 펀딩 프로세스를 쓸것인가 - 메인화면용
-  useButton, // 버튼을 사용할 것인가 - 메인화면용
-  imgWidth, // 이미지 크기
+  renderButton,
+  useFundingProgress,
+  useButton,
+  imgWidth,
   fundingId,
-  funding, // 현재 위시리스트에 해당하는 펀딩객체
+  funding,
 }) {
   const navigate = useNavigate();
+
   function handleCardClick() {
     if (useButton) {
       navigate(`/product/${_id}`);
@@ -32,8 +31,6 @@ export default function WishList({
   }
 
   function handleButtonClick(e) {
-    // Handle button click here
-    // Stop the event propagation to prevent triggering the card click
     e.stopPropagation();
   }
 
@@ -42,55 +39,40 @@ export default function WishList({
     0
   );
 
+  // Truncate title to 20 characters
+  const truncatedTitle =
+    title.length > 20 ? title.substring(0, 20) + "..." : title;
+
   return (
-    <Card
-      className={
-        imgWidth
-          ? "hover:shadow-lg hover:transform hover:scale-[1.01] duration-300 hover:cursor-pointer"
-          : "max-w-lg"
-      }
+    <div
+      className="border border-spacing-3 hover:shadow-lg hover:transform hover:scale-105 transition-transform duration-300 ease-in-out hover:cursor-pointer border-2 border-transparent hover:border-blue-500 rounded-lg bg-white p-4"
       onClick={handleCardClick}
     >
-      <div className={`md:flex ${useButton ? "gap-6" : "gap-2"}`}>
-        <div
-          style={{
-            maxWidth: useButton ? "280px" : "150px",
-          }}
-        >
+      <div className="md:flex gap-6 items-center">
+        <div className="flex-shrink-0 max-w-[280px]">
           {imageUrl && (
             <img
               src={imageUrl}
-              className="w-full h-auto mb-3"
-              style={{ width: imgWidth ? imgWidth : "", minWidth: "130px" }}
+              className="w-20 h-20 mb-3 rounded-md"
               alt="product"
             />
           )}
-          <div className="flex items-center mb-3 hover:bg-gray-200">
+          <div className="flex items-center mb-3">
             {brandImageUrl && (
               <img
                 src={brandImageUrl}
                 alt="Brand Logo"
-                className="w-8 h-8 mr-2"
+                className="w-8 h-8 mr-2 rounded-full"
               />
             )}
-            <h6 className="text-sm font-extrabold text-center text-green-300 dark:text-gray-400">
-              {brandName}
-            </h6>
+            <h6 className="text-sm font-semibold text-gray-600">{brandName}</h6>
           </div>
         </div>
-        <div className="overflow-auto text-start justify-between w-full md:w-auto lg:w-auto">
-          <h5
-            className={`${
-              useButton ? "max-w-[450px]" : "w-[300px]"
-            } text-wrap text-xl font-bold tracking-tight text-yellow-500 dark:text-white`}
-            style={{ marginBottom: "5px", fontSize: "1rem" }}
-          >
-            {title}
+        <div className="text-start w-full">
+          <h5 className="font-bold text-gray-800 mb-2 truncate overflow-hidden whitespace-nowrap text-overflow-ellipsis">
+            {truncatedTitle}
           </h5>
-          <p
-            className="px-1 py-2 font-bold text-gray-700 dark:text-gray-400"
-            style={{ fontSize: "0.875rem" }}
-          >
+          <p className="text-lg font-bold text-gray-700 mb-2">
             {parseInt(price).toLocaleString()} 원
           </p>
           {useFundingProgress && (
@@ -101,15 +83,15 @@ export default function WishList({
               customWidth={customWidth}
               customHeight={customHeight}
               customProgressBarWidth={customProgressBarWidth}
-            ></FundingProgress>
+            />
           )}
           {useButton && (
-            <div className="flex justify-end" onClick={handleButtonClick}>
+            <div className="flex justify-end mt-3" onClick={handleButtonClick}>
               {renderButton()}
             </div>
           )}
         </div>
       </div>
-    </Card>
+    </div>
   );
 }

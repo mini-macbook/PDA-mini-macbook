@@ -97,7 +97,7 @@ const ProductDetail = () => {
   });
 
   return (
-    <div className="flex flex-col items-center justify-center w-full mt-4 bg-gradient-to-r from-yellow-100 to-green-100">
+    <div className="flex flex-col items-center justify-center w-full mt-4">
       <div className="flex flex-row items-start justify-center w-full max-w-4xl gap-4 p-4 m-20 bg-white border-2 border-gray-200 rounded-lg shadow-lg ">
         <Card
           className="w-[398px] h-[398px]"

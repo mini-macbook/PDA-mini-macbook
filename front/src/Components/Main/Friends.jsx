@@ -46,7 +46,7 @@ export default function Friends({
         {months.map((month) => (
           <button
             key={month}
-            className={`py-1 px-2 rounded-full ${
+            className={`py-1 px-2 rounded-full text-sm ${
               month === selectedMonth ? "bg-blue-500 text-white" : "bg-gray-200"
             }`}
             onClick={() => handleMonthClick(month)}
