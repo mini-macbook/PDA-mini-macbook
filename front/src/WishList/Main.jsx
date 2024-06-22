@@ -86,7 +86,7 @@ export default function WishListPage() {
         </div>
         <div className="text-xl flex items-center font-bold flex-col gap-2 mt-8">
           <div className="flex items-center gap-2">
-            <p className="text-2xl font-semibold">{userNickName}</p> <p className="text-sm text-gray-400">생일 6월 22일</p>
+            <p className="text-2xl font-semibold">{userNickName}</p> <p className="text-sm text-gray-400">{birthDayDate.toLocaleDateString()}</p>
           </div>
           <div><p className="text-sm font-semibold text-gray-500">정보시스템학과</p></div>
         </div>
