@@ -9,15 +9,10 @@ import { userInfoState } from "../stores/auth";
 import { useRecoilState } from "recoil";
 import { AUTH_KEY } from "../Home/Login";
 
-// console.log("유저정보", userInfo);
-// console.log(typeof(userInfo))
-
 export default function WishListPage() {
   const [myWishList, setMyWishList] = useState([]);
   const [fundingData, setFundingData] = useState([]);
-  const [userInfoName, setUserInfoName] = useRecoilState(userInfoState);
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
-  console.log(userInfo);
 
   const userNickName = JSON.parse(sessionStorage.getItem(AUTH_KEY)).nickName;
   const customWidth = "w-[300px]";
@@ -25,9 +20,6 @@ export default function WishListPage() {
   const customProgressBarWidth = "w-[280px]";
   const userInfo1 = sessionStorage.getItem("AUTH_USER");
   const birthDayDate = new Date(JSON.parse(userInfo1)?.birthDay);
-  // console.log("생일", birthDayDate)
-
-  //username
 
   // 오늘 날짜
   const today = new Date();
@@ -58,10 +50,9 @@ export default function WishListPage() {
       const data1 = await fetchWishes(
         JSON.parse(sessionStorage.getItem("AUTH_USER")).phoneNumber
       ); // user phoneNumber 전달
-      console.log("2222222", data1);
+      console.log("Fetched Wishes", data1);
       setMyWishList(data1.isWishList);
       setFundingData(data1.fundings);
-      // console.log("위시리스트", data1.isWishList)
     }
     fetchData();
   }, []);
@@ -76,7 +67,7 @@ export default function WishListPage() {
 
   return (
     <div className="flex justify-evenly">
-      <div className=" flex-col border border-solid w-[30%] border-gray-600 rounded-2xl transition-transform  bg-white p-4 mt-5">
+      <div className="flex-col border border-solid w-[30%] border-gray-600 rounded-2xl transition-transform bg-white p-4 mt-5">
         <div className="flex flex-col w-full items-start justify-between mb-3">
           <span className="text-3xl mb-8 mt-4 ml-4 font-bold">
             나의 펀딩 현황
@@ -89,7 +80,7 @@ export default function WishListPage() {
         </div>
         <div className="text-xl flex items-center font-bold flex-col gap-2 mt-8">
           <div className="flex items-center gap-2">
-            <p className="text-2xl font-semibold">{userNickName}</p>{" "}
+            <p className="text-2xl font-semibold">{userNickName}</p>
             <p className="text-sm text-gray-400">생일 6월 22일</p>
           </div>
           <div>
@@ -101,7 +92,7 @@ export default function WishListPage() {
       </div>
 
       <div className="w-[60%]">
-        <h2 className="px-5 pt-5 pb-2 text-[20px] text">나의 위시리스트</h2>
+        <h2 className="px-5 pt-5 pb-2 text-[20px]">나의 위시리스트</h2>
         <div className="p-5">
           <div className="flex flex-wrap gap-4 md:grid-cols-2 lg:grid-cols-3">
             {myWishList.map((myWish, index) => (
