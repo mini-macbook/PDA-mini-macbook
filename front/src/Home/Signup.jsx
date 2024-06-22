@@ -72,9 +72,9 @@ const Signup = () => {
       // });
       console.log(response.data);
       if (response.data.result === true) {
-        alert("중복된 닉네임 입니다.");
+        alert("중복된 아이디 입니다.");
       } else {
-        alert("사용가능한 닉네임 입니다.");
+        alert("사용가능한 아이디 입니다.");
       }
     } catch (error) {
       console.error(error);
@@ -82,144 +82,161 @@ const Signup = () => {
     }
   };
   return (
-    <div className="flex items-center justify-center min-h-screen ">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md p-8 mx-auto bg-white rounded-lg shadow-lg">
-        <img
-          className="w-auto h-20 mx-auto rounded-full"
-          src="https://www.nizform.com/ByStoreFile/105073/preview/view_105073.jpg"
-          alt="Your Company"
-        />
-        <h2 className="mt-6 text-3xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-green-300 to-teal-400">
+        <h2 className="mt-6 text-3xl font-extrabold text-center text-transparent bg-clip-text bg-black">
           회원가입
         </h2>
 
         <form className="mt-8 space-y-6" action="#" method="POST">
-          <div>
-            <label
-              htmlFor="userEmail"
-              className="block text-sm font-medium leading-5 text-gray-700"
-            >
-              Email address
-            </label>
-            <div className="relative mt-1 rounded-md shadow-sm">
-              <input
-                id="userEmail"
-                name="userEmail"
-                type="email"
-                value={state.userEmail}
-                autoComplete="userEmail"
-                required
-                onChange={handleChangeState}
-                className="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                placeholder="you@example.com"
-              />
+          <div className="space-y-4">
+            {/* 이름 */}
+            <div className="flex items-center space-x-2">
+              <label
+                htmlFor="nickName"
+                className="block w-24 text-sm font-medium leading-5 text-gray-700"
+              >
+                이름
+              </label>
+              <div className="relative flex-grow">
+                <input
+                  id="nickName"
+                  name="nickName"
+                  type="text"
+                  value={state.nickName}
+                  autoComplete="nickName"
+                  required
+                  onChange={handleChangeState}
+                  className="w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-100"
+                  placeholder="이름"
+                />
+              </div>
             </div>
-          </div>
+            {/* 아이디 */}
+            <div className="flex items-center space-x-2">
+              <label
+                htmlFor="userEmail"
+                className="block w-24 text-sm font-medium leading-5 text-gray-700"
+              >
+                아이디
+              </label>
+              <div className="relative flex-grow">
+                <input
+                  id="userEmail"
+                  name="userEmail"
+                  type="text"
+                  value={state.userEmail}
+                  autoComplete="userEmail"
+                  required
+                  onChange={handleChangeState}
+                  className="w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-100"
+                  placeholder="아이디"
+                />
+              </div>
+            </div>
 
-          <div>
-            <label
-              htmlFor="userPassword"
-              className="block text-sm font-medium leading-5 text-gray-700"
-            >
-              Password
-            </label>
-            <div className="mt-1">
-              <input
-                id="userPassword"
-                name="userPassword"
-                type="password"
-                onChange={handleChangeState}
-                value={state.userPassword}
-                autoComplete="new-userPassword"
-                required
-                className="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                placeholder="Enter your password"
-              />
-            </div>
-          </div>
 
-          <div>
-            <label
-              htmlFor="passwordCheck"
-              className="block text-sm font-medium leading-5 text-gray-700"
-            >
-              Confirm Password
-            </label>
-            <div className="m-1 mb-3">
-              <input
-                id="passwordCheck"
-                name="passwordCheck"
-                type="password"
-                onChange={handleChangeState}
-                autoComplete="new-password"
-                required
-                className="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                placeholder="Confirm your password"
-              />
-            </div>
-            <label
-              htmlFor="nickname"
-              className="block text-sm font-medium leading-5 text-gray-700"
-            >
-              Nickname
-            </label>
-            <div className="relative mt-1 mb-2">
-              <input
-                id="nickName"
-                name="nickName"
-                type="text"
-                value={state.nickName}
-                autoComplete="nickName"
-                required
-                onChange={handleChangeState}
-                className="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                placeholder="Enter your nickName"
-              />
+
+            {/* 중복 검사 버튼 */}
+            <div className="flex items-center space-x-2">
+              <div className="w-24"></div> {/* 공간을 만들기 위한 빈 div */}
               <button
                 type="button"
-                className="absolute inset-y-0 right-0 flex items-center px-3 text-xs font-semibold text-white bg-yellow-300 border border-l border-transparent border-gray-300 rounded-md shadow-sm rounded-r-md hover:bg-lime-300 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700"
+                className="flex-shrink-0 px-3 text-xs font-semibold text-gray-400 bg-white border border-l border-transparent rounded-md shadow-sm hover:bg-lime-300 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700"
                 onClick={onClickNickNameCheck}
               >
                 중복 검사
               </button>
             </div>
-            <label
-              htmlFor="phoneNumber"
-              className="block text-sm font-medium leading-5 text-gray-700"
-              placeholder="010-0000-0000"
-            >
-              Phone Number
-            </label>
-            <div className="mt-1">
-              <input
-                id="phoneNumber"
-                name="phoneNumber"
-                type="text"
-                autoComplete="phoneNumber"
-                required
-                value={state.phoneNumber}
-                onChange={handleChangeState}
-                className="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                placeholder="Enter your Phone Number: ex) 010-0000-0000"
-              />
+
+            {/* 비밀번호 */}
+            <div className="flex items-center space-x-2">
+              <label
+                htmlFor="userPassword"
+                className="block w-24 text-sm font-medium leading-5 text-gray-700"
+              >
+                비밀번호
+              </label>
+              <div className="relative flex-grow">
+                <input
+                  id="userPassword"
+                  name="userPassword"
+                  type="password"
+                  onChange={handleChangeState}
+                  value={state.userPassword}
+                  autoComplete="new-password"
+                  required
+                  className="w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-100"
+                  placeholder="비밀번호 입력"
+                />
+              </div>
             </div>
-            <label
-              htmlFor="dateOfBirth"
-              className="block mt-2 text-sm font-medium leading-5 text-gray-700"
-            >
-              Date of Birth
-            </label>
-            <div className="mt-1">
-              <input
-                id="birthDay"
-                name="birthDay"
-                value={state.birthDay}
-                type="date"
-                required
-                onChange={handleChangeState}
-                className="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                placeholder="yyyy-mm-dd"
-              />
+
+            {/* 비밀번호 확인 */}
+            <div className="flex items-center space-x-2">
+              <label
+                htmlFor="passwordCheck"
+                className="block w-24 text-sm font-medium leading-5 text-gray-700"
+              >
+                비밀번호 확인
+              </label>
+              <div className="relative flex-grow">
+                <input
+                  id="passwordCheck"
+                  name="passwordCheck"
+                  type="password"
+                  onChange={handleChangeState}
+                  autoComplete="new-password"
+                  required
+                  className="w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-100"
+                  placeholder="비밀번호 확인"
+                />
+              </div>
+            </div>
+
+            {/* 생년월일 */}
+            <div className="flex items-center space-x-2">
+              <label
+                htmlFor="birthDay"
+                className="block w-24 text-sm font-medium leading-5 text-gray-700"
+              >
+                생년월일
+              </label>
+              <div className="relative flex-grow">
+                <input
+                  id="birthDay"
+                  name="birthDay"
+                  value={state.birthDay}
+                  type="date"
+                  required
+                  onChange={handleChangeState}
+                  className="w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-100"
+                  placeholder="yyyy-mm-dd"
+                />
+              </div>
+            </div>
+
+            {/* 전화번호 */}
+            <div className="flex items-center space-x-2">
+              <label
+                htmlFor="phoneNumber"
+                className="block w-24 text-sm font-medium leading-5 text-gray-700"
+              >
+                전화번호
+              </label>
+              <div className="relative flex-grow">
+                <input
+                  id="phoneNumber"
+                  name="phoneNumber"
+                  type="text"
+                  autoComplete="phoneNumber"
+                  required
+                  value={state.phoneNumber}
+                  onChange={handleChangeState}
+                  className="w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-100"
+                  placeholder="010-0000-0000"
+                />
+              </div>
             </div>
           </div>
 
@@ -235,15 +252,19 @@ const Signup = () => {
             <div>
               <button
                 onClick={onClickSignUp}
-                className="inline-flex justify-center px-4 py-2 text-sm font-medium leading-5 text-white transition duration-150 ease-in-out bg-yellow-300 border border-transparent rounded-md shadow-sm hover:bg-lime-300 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700"
+                className="inline-flex justify-center px-4 py-2 text-sm font-medium leading-5 text-white transition duration-150 ease-in-out bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-lime-300 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700"
               >
-                완료
+                회원가입하기
               </button>
             </div>
           </div>
         </form>
       </div>
     </div>
+
+
+
+
   );
 };
 
