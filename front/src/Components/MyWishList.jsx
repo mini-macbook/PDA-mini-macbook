@@ -26,7 +26,7 @@ export default function MyWishList({
     title.length > 20 ? title.substring(0, 20) + "..." : title;
 
   return (
-    <div className="border border-spacing-3 hover:shadow-lg hover:transform hover:scale-105 transition-transform duration-300 ease-in-out hover:cursor-pointer border-2 border-transparent hover:border-blue-500 rounded-lg bg-white p-2">
+    <div className="border border-spacing-3 transition-transform duration-300 ease-in-out hover:border-blue-500 rounded-lg bg-white p-2">
       <div className="md:flex gap-6 items-center">
         <div className="w-32">
           {imageUrl && (

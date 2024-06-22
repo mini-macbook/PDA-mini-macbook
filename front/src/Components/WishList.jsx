@@ -45,7 +45,7 @@ export default function WishList({
 
   return (
     <div
-      className="border border-spacing-3 hover:shadow-lg hover:transform hover:scale-105 transition-transform duration-300 ease-in-out hover:cursor-pointer border-2 border-transparent hover:border-blue-500 rounded-lg bg-white p-4"
+      className="border border-spacing-3 hover:shadow-lg transition-transform duration-300 ease-in-out hover:cursor-pointer border-transparent rounded-lg bg-white p-4"
       onClick={handleCardClick}
     >
       <div className="flex gap-5">

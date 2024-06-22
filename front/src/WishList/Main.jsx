@@ -3,8 +3,11 @@ import WishList from "../Components/WishList";
 import { Row, Col } from "react-bootstrap";
 import { fetchWishes } from "../Api/WishApi";
 import { fetchFundingDetail } from "../Api/Funding";
-
-import profile from "../imgs/profile.png";
+import FundingProgress from "../Components/Funding/FundingProgress";
+import profile from "../imgs/profile.svg";
+import { userInfoState } from "../stores/auth";
+import { useRecoilState } from "recoil";
+import { AUTH_KEY } from "../Home/Login";
 
 // console.log("유저정보", userInfo);
 // console.log(typeof(userInfo))
@@ -12,7 +15,8 @@ import profile from "../imgs/profile.png";
 export default function WishListPage() {
   const [myWishList, setMyWishList] = useState([]);
   const [fundingData, setFundingData] = useState([]);
-
+  const [userInfoName, setUserInfoName] = useRecoilState(userInfoState);
+  const userNickName = JSON.parse(sessionStorage.getItem(AUTH_KEY)).nickName;
   const customWidth = "w-[300px]";
   const customHeight = "h-[80px]";
   const customProgressBarWidth = "w-[280px]";
@@ -69,18 +73,22 @@ export default function WishListPage() {
 
   return (
     <div className="flex justify-evenly">
-      <div className="border border-solid w-[30%] border-gray-600 rounded-2xl hover:shadow-lg hover:transform hover:scale-105 transition-transform  bg-white p-4 mt-5">
-        <div className="flex flex-col w-full items-center justify-between mb-3">
-          <span className="text-xl mb-4 font-bold">나의 펀딩 현황</span>
-          <img src={profile} alt="Profile" className="w-12 mt-8 h-12 rounded-full m-auto" />
+      <div className=" flex-col border border-solid w-[30%] border-gray-600 rounded-2xl transition-transform  bg-white p-4 mt-5">
+        <div className="flex flex-col w-full items-start justify-between mb-3">
+          <span className="text-3xl mb-8 mt-4 ml-4 font-bold">
+            나의 펀딩 현황
+          </span>
+          <img
+            src={profile}
+            alt="Profile"
+            className="w-40 mt-8 h-40 rounded-2xl m-auto"
+          />
         </div>
-        <div className="text-sm mt-8">
-          <span className="font-bold">이름: 정우성</span>{" "}
-          <br />
-          <span className="font-bold">생년월일: 2000.00.00</span>{" "}
-
-          <br />
-          <span className="font-bold">학과: 정보시스템</span>
+        <div className="text-xl flex items-center font-bold flex-col gap-2 mt-8">
+          <div className="flex items-center gap-2">
+            <p className="text-2xl font-semibold">{userNickName}</p> <p className="text-sm text-gray-400">생일 6월 22일</p>
+          </div>
+          <div><p className="text-sm font-semibold text-gray-500">정보시스템학과</p></div>
         </div>
       </div>
 

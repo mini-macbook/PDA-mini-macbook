@@ -5,8 +5,6 @@ import { userInfoState } from "../stores/auth";
 import axios from "axios";
 import { fetchLogin } from "../Api/AuthApi";
 import "../Components/Funding/FundingChart.css";
-import first from "../imgs/first.png";
-import before from "../imgs/before.png";
 import { MdArrowBackIos } from "react-icons/md";
 
 export const AUTH_KEY = "AUTH_USER";
@@ -64,7 +62,7 @@ const Login = () => {
 
         <form className="mt-8 w-full max-w-64" onSubmit={onClickLogin}>
           <div
-            className="flex items-center justify-center border-b border-gray-300 pb-2"
+            className="flex items-center justify-center border-b border-gray-300 mb-2"
             style={{ width: "100%" }}
           >
             <div className="w-64">
@@ -74,7 +72,7 @@ const Login = () => {
                 type="email"
                 autoComplete="email"
                 required
-                className="w-full px-3 py-2 placeholder-gray-400 border-none focus:outline-none sm:text-sm"
+                className="w-full px-3 placeholder-gray-400 border-none focus:outline-none sm:text-sm"
                 placeholder="이메일"
                 value={state.userEmail}
                 onChange={handleChangeState}
@@ -82,7 +80,7 @@ const Login = () => {
             </div>
           </div>
           <div
-            className="flex items-center justify-center border-b border-gray-300 pb-2"
+            className="flex items-center justify-center border-b border-gray-300"
             style={{ width: "100%" }}
           >
             <div className="w-64">

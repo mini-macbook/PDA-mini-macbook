@@ -10,7 +10,7 @@ import { userInfoState } from "../../stores/auth";
 import { useRecoilState } from "recoil";
 import { AUTH_KEY } from "../../Home/Login";
 import { Avatar } from "flowbite-react";
-import GetScrollY from '../../hooks/getScrollY';
+import GetScrollY from "../../hooks/getScrollY";
 export default function Header() {
   const getScrollY = GetScrollY();
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
@@ -24,7 +24,13 @@ export default function Header() {
   };
   return (
     <div className="mb-20">
-      <Navbar fluid rounded className={`mb-4 fixed left-0 top-0 right-0 ${getScrollY>0 && "shadow-sm"}`}>
+      <Navbar
+        fluid
+        rounded
+        className={`px-4 mb-4 fixed left-0 top-0 right-0 ${
+          getScrollY > 0 && "shadow-sm"
+        }`}
+      >
         <Navbar.Brand>
           <span
             className="pl-6 self-center text-xl font-semibold whitespace-nowrap dark:text-white hover:cursor-pointer"
@@ -34,10 +40,12 @@ export default function Header() {
           </span>
         </Navbar.Brand>
         <div className="flex items-center justify-center md:order-2">
-          <span className="flex items-center mr-5 text-lg">
-            <Avatar rounded size="sm" className="mr-2" />
-            {userNickName}
-          </span>
+          <Link to='/wish'>
+            <span className="flex items-center mr-5 text-lg">
+              <Avatar rounded size="sm" className="mr-2" />
+              {userNickName}
+            </span>
+          </Link>
           <Button color="blue" onClick={handleLogout}>
             로그아웃
           </Button>

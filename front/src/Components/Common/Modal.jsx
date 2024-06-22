@@ -140,7 +140,7 @@ export default function ModalComp({
             alt="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDzQJl-kKS5ov3MyAmp24jPxktGZJt9TAjDA&usqp=CAU"
           />
           <div className="text-gray-400 ">{productDetail?.brandName}</div>
-          <div className="font-bold">{productDetail?.title}</div>
+          <div className="font-bold mx-5 mt-2">{productDetail?.title}</div>
         </div>
         <Modal.Body>
           <div

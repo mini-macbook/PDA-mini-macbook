@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React from "react";
-import profileImg from "../../imgs/profile.png";
+import profileImg from "../../imgs/profile.svg";
 
 export default function User({ friend, setPhoneNumber }) {
   const month = new Date(friend.birthDay).getMonth() + 1;
