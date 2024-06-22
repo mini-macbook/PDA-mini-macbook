@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import FundingProfile from "../Components/Funding/FundingProfile";
 import ModalComp from "../Components/Common/Modal";
-D;
-import { fetchFundingDetail } from "../Api/Funding";
 import axios from "axios";
 import sanitizeHtml from "sanitize-html";
 import { fetchFundingDetail, fetchFundingPost } from "../Api/Funding";
