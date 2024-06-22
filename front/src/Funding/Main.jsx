@@ -13,7 +13,7 @@ import { HiInformationCircle } from "react-icons/hi";
 import useWindowSize from "react-use/lib/useWindowSize";
 import Confetti from "react-confetti";
 import FundingChart from "../Components/Funding/FundingChart";
-
+import fundingMessage from "../imgs/fundingMessage.svg";
 const calculateDDay = (targetDate) => {
   // Get the current date
   const currentDate = new Date();
@@ -58,10 +58,12 @@ const Funding = () => {
 
   const FundingRight = () => {
     return (
-      <div className="w-[500px] mt-20 mr-20 h-full">
+      <div className="w-[500px] mt-10 mr-20 h-full fixed right-[100px]">
         <div className="w-[400px] m-auto h-full">
-          <div className="bg-[#517ACC] rounded-xl mb-10 h-[100px] w-full text-xl font-semibold flex items-center text-white pl-10">
-            "맥북 갖고싶어잉."
+          <div className="mb-8">
+            <img className="relative bg-[#FFE5BD] w-[400px] rounded-2xl" src={fundingMessage}></img>
+            <div className="absolute top-[36px] left-1/4 text-2xl text-[#E2A448] font-semibold">맥북 받고싶어용
+</div>
           </div>
           <FundingChart
             targetFundingAmount={productDetail?.price}
@@ -167,7 +169,7 @@ const Funding = () => {
     });
 
     return (
-      <div className="flex flex-1 mx-20 flex-col items-center">
+      <div className="flex flex-1 mr-[500px] mx-20 flex-col h-fit items-center">
         {currentFundingAmount === productDetail?.price && showConfetti && (
           <Confetti width={width} height={height} />
         )}
@@ -228,7 +230,7 @@ const Funding = () => {
   };
 
   return (
-    <div className="flex">
+    <div className="flex h-full ">
       <FundingLeft />
       <FundingRight />
     </div>

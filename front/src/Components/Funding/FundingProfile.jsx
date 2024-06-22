@@ -1,6 +1,5 @@
 import React from "react";
 import { Avatar } from "flowbite-react";
-import { Badge } from "flowbite-react";
 
 const FundingProfile = ({ amount, userInfo }) => {
   const formatPrice = (price) => {
@@ -17,12 +16,14 @@ const FundingProfile = ({ amount, userInfo }) => {
         />
       </div>
       <div className="flex-1 flex-col">
-        <div className="text-[16px] ">{userInfo.department} (학과)</div>
+        <div className="text-[16px] ">{userInfo} ({userInfo.d})</div>
         <div className="text-xs text-gray-400">친구야 사랑해</div>
       </div>
 
       <div className="h-full flex items-center mr-4 text-center rounded-lg mt-2">
-        <div className="flex items-center mb-2 text-center font-semibold text-[18px]">
+        <div
+          className="flex items-center mb-2 text-center font-semibold text-[18px]"
+        >
           ₩{formatPrice(amount)}
         </div>
       </div>

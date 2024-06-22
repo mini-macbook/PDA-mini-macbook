@@ -180,12 +180,12 @@ export default function ModalComp({
           <div className="d-flex">
             <Button
               onClick={() => handleFundClick()}
-              className="border-none bg-myColor-green3 hover:bg-myColor-green2"
+              className="border-none bg-[#6599FF] hover:bg-[#3f6ecb]"
             >
               후원하기
             </Button>
             <Button
-              className="ml-2 text-myColor-green3 border-myColor-green3 hover:border-myColor-green2 hover:bg-white hover:text-myColor-green2"
+              className="ml-2 text-[#6599FF] border-[#6599FF] hover:bg-red-500"
               onClick={() => setOpenModal(false)}
             >
               취소

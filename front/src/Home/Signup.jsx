@@ -2,8 +2,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { fetchSignup, fetchNickName } from "../Api/AuthApi";
-
-import before from '../imgs/before.png';
+import before from "../imgs/before.png";
+import { MdArrowBackIos } from "react-icons/md";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -61,13 +61,10 @@ const Signup = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md p-8 mx-auto bg-white rounded-lg shadow-lg">
+      <div className="w-full max-w-lg p-8 mx-auto relative bg-white rounded-xl">
         <div>
-          <Link
-            to="/"
-            className="flex "
-          >
-            <img src={before} alt="before" className="w-4 h-4 mr-2" />
+          <Link to="/" className="text-gray-300 absolute left-20 top-16 items-center font-thin hover:text-white-500 justify-start">
+            <MdArrowBackIos className="text-2xl"/>
           </Link>
         </div>
         <h2 className="mt-6 text-3xl font-extrabold text-center text-transparent bg-clip-text bg-black">
@@ -105,7 +102,7 @@ const Signup = () => {
                 htmlFor="userEmail"
                 className="block w-24 text-sm font-medium leading-5 text-gray-700"
               >
-                아이디
+                이메일
               </label>
               <div className="relative flex-grow">
                 <input
@@ -117,7 +114,7 @@ const Signup = () => {
                   required
                   onChange={handleChangeState}
                   className="w-full max-w-xs px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-100"
-                  placeholder="아이디"
+                  placeholder="이메일"
                 />
               </div>
             </div>
