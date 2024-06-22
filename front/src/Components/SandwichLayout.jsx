@@ -7,7 +7,7 @@ export default function SandwichLayout() {
   return (
     <>
       <Header />
-      <Outlet />
+      <Outlet/>
     </>
   );
 }
