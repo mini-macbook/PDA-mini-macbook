@@ -101,12 +101,12 @@ const Login = () => {
             </button>
           </div>
         </form>
-        <div className="mt-4 text-center">
+        <div className="mb-4 text-center">
           <Link
             to="/signup"
             className="font-medium text-zinc-700 hover:text-zinc-500"
           >
-            계정이 없으신가요? 가입하기
+            회원가입
           </Link>
         </div>
       </div>

@@ -109,7 +109,7 @@ const Main = () => {
   return (
     <div className="flex flex-col min-h-screen">
       {myWishList ? (
-        <div className="shadow-2xl mt-4 ml-12 mr-12 p-3 rounded-2xl">
+        <div className="mt-4 ml-12 mr-12 p-3 rounded-2xl" style={{ boxShadow: '2px 2px 8px 0px rgba(0, 0, 0, 0.15)' }}>
           <div className="flex flex-col">
             <div className="flex flex-row items-center">
               <div className="text-2xl font-bold">나의 펀딩 현황</div>
@@ -130,8 +130,8 @@ const Main = () => {
         <div />
       )}
 
-      <div className="flex flex-row mt-10">
-        <div className="ml-12 m-10 w-96">
+      <div className="flex flex-row mt-10" >
+        <div className="ml-12 m-10 w-96" >
           <Friends
             className="bg-white"
             friends={filteredFriends}
