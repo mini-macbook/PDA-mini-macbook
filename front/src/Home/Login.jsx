@@ -50,10 +50,10 @@ const Login = () => {
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <div className="flex flex-col items-center justify-center p-10 bg-white rounded-3xl shadow-m w-full max-w-4xl gap-10">
 
-        <div className="mt-6 font-extrabold flex justify-between text-center text-transparent bg-clip-text text-black">
+        <div className="mt-6 text-4xl md:text-6xl font-extrabold flex justify-between text-center text-transparent bg-clip-text text-black">
           <Link
             to="/"
-            className="flex -ml-60 items-center font-medium text-indigo-600 hover:text-white-500 justify-start"
+            className="flex -ml-6 items-center font-medium text-indigo-600 hover:text-white-500 justify-start"
           >
             <img src={before} alt="before" className="w-4 h-4 mr-2 mt-1" />
             
