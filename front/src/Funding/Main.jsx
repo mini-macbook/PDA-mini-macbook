@@ -46,7 +46,7 @@ const Funding = () => {
   const { fundingId } = useParams();
   const [fundingDetail, setFundingDetail] = useState([]);
   const [userFundingResult, setUserFundingResult] = useState();
-  const [productDetail, setProductDetail] = useState();
+  const [productDetail, setProductDetail] = useState([]);
   const [userDetail, setUserDetail] = useState();
   const [userInfo, setUserInfo] = useState();
   const { width, height } = useWindowSize();
@@ -135,35 +135,36 @@ const Funding = () => {
     0
   );
   const FundingLeft = () => {
-    // const htmlCode = productDetail[0]?.productDetailDescription;
-    // const cleanCode = sanitizeHtml(htmlCode, {
-    //   allowedTags: sanitizeHtml.defaults.allowedTags.concat([
-    //     "img",
-    //     "iframe",
-    //     "video",
-    //   ]),
-    //   allowedAttributes: {
-    //     ...sanitizeHtml.defaults.allowedAttributes,
-    //     img: ["src", "alt", "data-animated", "data-origin-url"],
-    //     iframe: [
-    //       "src",
-    //       "width",
-    //       "height",
-    //       "frameborder",
-    //       "allowfullscreen",
-    //       "allow",
-    //     ],
-    //     video: [
-    //       "src",
-    //       "width",
-    //       "height",
-    //       "controls",
-    //       "autoplay",
-    //       "loop",
-    //       "muted",
-    //     ],
-    //   },
-    // });
+    console.log(productDetail);
+    const htmlCode = productDetail.productDetailDescription;
+    const cleanCode = sanitizeHtml(htmlCode, {
+      allowedTags: sanitizeHtml.defaults.allowedTags.concat([
+        "img",
+        "iframe",
+        "video",
+      ]),
+      allowedAttributes: {
+        ...sanitizeHtml.defaults.allowedAttributes,
+        img: ["src", "alt", "data-animated", "data-origin-url"],
+        iframe: [
+          "src",
+          "width",
+          "height",
+          "frameborder",
+          "allowfullscreen",
+          "allow",
+        ],
+        video: [
+          "src",
+          "width",
+          "height",
+          "controls",
+          "autoplay",
+          "loop",
+          "muted",
+        ],
+      },
+    });
 
     return (
       <div className="flex flex-1 mx-20 flex-col items-center">
@@ -213,11 +214,11 @@ const Funding = () => {
               </div>
             </div>
             <div className="flex flex-col">
-              <p className="mt-16 text-2xl font-bold border-b border-solid w-[150px] leading-10 text-center border-b-black">
+              <p className="mt-16 mb-16 text-2xl font-bold border-b border-solid w-[150px] leading-10 text-center border-b-black">
                 상품상세
               </p>
               <div>
-                {/* <div dangerouslySetInnerHTML={{ __html: cleanCode }}></div> */}
+                <div dangerouslySetInnerHTML={{ __html: cleanCode }}></div>
               </div>
             </div>
           </div>
