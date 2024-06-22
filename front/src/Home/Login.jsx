@@ -4,9 +4,10 @@ import { useRecoilState } from "recoil";
 import { userInfoState } from "../stores/auth";
 import axios from "axios";
 import { fetchLogin } from "../Api/AuthApi";
-
+import "../Components/Funding/FundingChart.css";
 import first from "../imgs/first.png";
 import before from "../imgs/before.png";
+import { MdArrowBackIos } from "react-icons/md";
 
 export const AUTH_KEY = "AUTH_USER";
 
@@ -48,12 +49,17 @@ const Login = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <div className="flex flex-col items-center justify-center p-10 bg-white rounded-3xl shadow-m w-full max-w-4xl gap-10">
-        <Link to="/" className="mr-auto">
-          <img src={before} alt="before" className="w-4 h-4 mr-2 mt-1" />
-        </Link>
-        <div className="mt-6 text-4xl md:text-6xl font-extrabold flex justify-between text-center text-transparent bg-clip-text text-black">
-          <img src={first} alt="before" className="m-auto" />
+      <div className="flex flex-col items-center justify-center p-10 relative bg-white rounded-3xl shadow-m w-full max-w-4xl gap-10">
+        <div className="mt-6 w-full text-4xl md:text-6xl font-extrabold flex text-center text-transparent bg-clip-text text-black">
+          <Link
+            to="/"
+            className="text-gray-300 absolute left-60 top-16 items-center font-thin hover:text-white-500 justify-start"
+          >
+            <MdArrowBackIos className="text-3xl"/>
+          </Link>
+          <div className="RecipekoreaOtf m-auto text-4xl font-medium">
+            티끌모아 맥북
+          </div>
         </div>
 
         <form className="mt-8 w-full max-w-64" onSubmit={onClickLogin}>
@@ -65,9 +71,11 @@ const Login = () => {
               <input
                 id="userEmail"
                 name="userEmail"
+                type="email"
+                autoComplete="email"
                 required
                 className="w-full px-3 py-2 placeholder-gray-400 border-none focus:outline-none sm:text-sm"
-                placeholder="아이디"
+                placeholder="이메일"
                 value={state.userEmail}
                 onChange={handleChangeState}
               />

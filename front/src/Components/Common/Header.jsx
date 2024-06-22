@@ -22,8 +22,8 @@ export default function Header() {
     navigate("/");
   };
   return (
-    <div>
-      <Navbar fluid rounded className="mb-4 shadow-sm">
+    <div className="mb-20">
+      <Navbar fluid rounded className="mb-4 shadow-sm fixed left-0 top-0 right-0">
         <Navbar.Brand>
           <span
             className="pl-6 self-center text-xl font-semibold whitespace-nowrap dark:text-white hover:cursor-pointer"

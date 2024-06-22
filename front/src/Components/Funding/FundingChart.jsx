@@ -1,22 +1,26 @@
 import "chart.js/auto"; // src/FundingChart.js
 import React, { useState } from "react";
 import { Doughnut } from "react-chartjs-2";
-import './FundingChart.css'
-const FundingChart = ({targetFundingAmount, currentFundingAmount}) => {
-
+import "./FundingChart.css";
+const FundingChart = ({ targetFundingAmount, currentFundingAmount }) => {
   const formatPrice = (price) => {
     return new Intl.NumberFormat("en-US", { style: "decimal" }).format(price);
   };
 
-  const percentage = Math.round((currentFundingAmount / targetFundingAmount) * 100);
+  const percentage = Math.round(
+    (currentFundingAmount / targetFundingAmount) * 100
+  );
 
   const data = {
     labels: ["Funding", "Remaining"],
     datasets: [
       {
-        data: [currentFundingAmount, targetFundingAmount - currentFundingAmount],
-        backgroundColor: ["rgba(101, 153, 255, 1)", "rgba(192, 192, 192, 0.6)"],
-        borderColor: ["rgba(101, 153, 255, 1)", "rgba(192, 192, 192, 1)"],
+        data: [
+          currentFundingAmount,
+          targetFundingAmount - currentFundingAmount,
+        ],
+        backgroundColor: ["rgba(96, 165, 250, 1)", "rgba(192, 192, 192, 0.6)"],
+        borderColor: ["rgba(96, 165, 250, 1)", "rgba(192, 192, 192, 1)"],
         borderWidth: 1,
       },
     ],
@@ -41,7 +45,7 @@ const FundingChart = ({targetFundingAmount, currentFundingAmount}) => {
         <div className="w-[140px] h-[140px] relative">
           <Doughnut data={data} options={options} className="w-80" />
           <div
-            className="absolute top-1/2 left-1/2 text-lg font-bold"
+            className="absolute top-1/2 left-1/2 text-xl font-bold text-[rgba(96,165,250,1)]"
             style={{
               transform: "translate(-50%, -50%)",
             }}
@@ -49,9 +53,21 @@ const FundingChart = ({targetFundingAmount, currentFundingAmount}) => {
             {percentage}%
           </div>
         </div>
-        <div className="Pretendard mr-4 font-semibold flex flex-col text-nowrap mt-10 ml-4 text-lg">
-          <div> {formatPrice(currentFundingAmount)} /</div>
-          <div> {formatPrice(targetFundingAmount)}원</div>
+        <div className="Pretendard mr-4 flex flex-col text-nowrap mt-4 ml-3 text-2xl">
+          <div className="flex flex-col text-[#60A5FA]">
+            <div className="text-xs font-extralight leading-3">달성금액</div>
+            <div>
+              {formatPrice(currentFundingAmount)}
+              <span className="text-black">원</span>
+            </div>
+          </div>
+          <div className="flex flex-col mt-2">
+            <div className="text-xs font-extralight leading-3 text-[grey]">목표금액</div>
+            <div>
+              {formatPrice(targetFundingAmount)}
+              <span className="text-black">원</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
