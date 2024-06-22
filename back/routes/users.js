@@ -9,9 +9,6 @@ router.get("/find", async (req, res, next) => {
     // Fetch all users
     const users = await User.find();
 
-    // Log the fetched users for debugging purposes
-    console.log("Fetched users:", users);
-
     // Sort users by birthDay (month and day)
     users.sort((a, b) => {
       const aDate = new Date(a.birthDay);
@@ -28,10 +25,6 @@ router.get("/find", async (req, res, next) => {
         return aDay - bDay;
       }
     });
-
-    // Log the sorted users for debugging purposes
-    console.log("Sorted users:", users);
-
     // Return sorted users
     res.json(users);
   } catch (err) {
@@ -150,6 +143,7 @@ router.post("/friends/:phoneNumber", authenticate, async (req, res, next) => {
     }
 
     const user = await User.findById(req.user._id);
+
     user.friendList.push(friend._id);
     const newUser = await user.save();
     res.json(newUser);

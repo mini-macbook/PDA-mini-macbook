@@ -33,7 +33,7 @@ export default function WishLists({ wishList, fundings, birthDay }) {
               remainDays={calculateDDay(birthDay)}
               renderButton={() => (
                 <button
-                  className="w-full py-2 my-3 font-bold text-white transition-colors duration-200 ease-in-out transform bg-blue-500 border-none rounded-md hover:bg-blue-400"
+                  className="w-52 py-2 my-3 font-bold text-white transition-colors duration-200 ease-in-out transform bg-blue-500 border-none rounded-md hover:bg-blue-400"
                   onClick={() => {
                     const fundingId = findFunding(item._id)._id;
                     if (fundingId) {

@@ -15,7 +15,7 @@ const FundingProgress = ({
   };
 
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center">
       <div
         className={`flex flex-row items-stretch justify-between ${customProgressBarWidth} mb-2`}
       >
@@ -32,7 +32,7 @@ const FundingProgress = ({
           className="absolute top-0 left-0 h-full bg-blue-500"
           style={{ width: `${now}%` }}
         >
-          <span className="absolute right-0 mr-2 text-white text-xs">
+          <span className="absolute right-0 ml-3 left-2 text-white text-xs">
             {now.toFixed(2)}%
           </span>
         </div>

@@ -1,15 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import FundingProgress from "../Components/Funding/FundingProgress";
 import FundingProfile from "../Components/Funding/FundingProfile";
 import ModalComp from "../Components/Common/Modal";
-import axios from "axios";
-import { fetchFundingDetail, fetchFundingPost } from "../Api/Funding";
-import { userInfoState } from "../stores/auth";
-import { useRecoilState } from "recoil";
-import Swal from "sweetalert2";
+import { fetchFundingDetail } from "../Api/Funding";
 import { Alert } from "flowbite-react";
-import { HiEye, HiInformationCircle } from "react-icons/hi";
+import { HiInformationCircle } from "react-icons/hi";
 import useWindowSize from "react-use/lib/useWindowSize";
 import Confetti from "react-confetti";
 import FundingDetail from "../Components/Funding/FundingDetail";
@@ -143,9 +138,6 @@ const Funding = () => {
             remainDays={calculateDDay(userDetail?.birthDay)}
           />
         </div>
-        {/* <button className="w-[80%] bg-myColor-green3 text-white mt-4 h-[50px] rounded-lg">
-          펀딩하기
-        </button> */}
         <div className="w-[90%] max-w-[700px] mt-3">
           <ModalComp
             currentFundingAmount={currentFundingAmount}

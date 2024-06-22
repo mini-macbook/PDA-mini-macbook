@@ -48,23 +48,16 @@ export default function WishList({
       className="border border-spacing-3 hover:shadow-lg hover:transform hover:scale-105 transition-transform duration-300 ease-in-out hover:cursor-pointer border-2 border-transparent hover:border-blue-500 rounded-lg bg-white p-4"
       onClick={handleCardClick}
     >
-      <div className="md:flex gap-6 items-center">
-        <div className="flex-shrink-0 max-w-[280px]">
+      <div className="flex gap-5">
+        <div className="flex flex-col items-center justify-start w-52 h-44">
           {imageUrl && (
             <img
               src={imageUrl}
-              className="w-20 h-20 mb-3 rounded-md"
+              className="w-44 h-20 rounded-md mt-3"
               alt="product"
             />
           )}
-          <div className="flex items-center mb-3">
-            {brandImageUrl && (
-              <img
-                src={brandImageUrl}
-                alt="Brand Logo"
-                className="w-8 h-8 mr-2 rounded-full"
-              />
-            )}
+          <div className="flex flex-col items-center">
             <h6 className="text-sm font-semibold text-gray-600">{brandName}</h6>
           </div>
         </div>
@@ -72,7 +65,7 @@ export default function WishList({
           <h5 className="font-bold text-gray-800 mb-2 truncate overflow-hidden whitespace-nowrap text-overflow-ellipsis">
             {truncatedTitle}
           </h5>
-          <p className="text-lg font-bold text-gray-700 mb-2">
+          <p className="text-lg font-bold text-gray-700 mb-1">
             {parseInt(price).toLocaleString()} 원
           </p>
           {useFundingProgress && (
